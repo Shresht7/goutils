@@ -127,3 +127,36 @@ func TestJoin(t *testing.T) {
 	}
 
 }
+
+func TestPush(t *testing.T) {
+
+	testCases := []struct {
+		desc     string
+		input    []int
+		toPush   []int
+		expected []int
+	}{
+		{
+			desc:     "Should push an element onto the slice",
+			input:    []int{0, 1, 2},
+			toPush:   []int{3},
+			expected: []int{0, 1, 2, 3},
+		},
+		{
+			desc:     "Should push multiple elements onto the slice",
+			input:    []int{0, 1, 2},
+			toPush:   []int{3, 4, 5, 6, 7},
+			expected: []int{0, 1, 2, 3, 4, 5, 6, 7},
+		},
+	}
+
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			actual := Push(tC.input, tC.toPush...)
+			if !Equal(actual, tC.expected) {
+				t.Error("Failed to push elements onto the slice")
+			}
+		})
+	}
+
+}

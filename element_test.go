@@ -31,27 +31,6 @@ func TestFirstNthAndLast(t *testing.T) {
 
 }
 
-//	Test Push
-func TestPush(t *testing.T) {
-
-	var slice []int = originalSlice[:]
-
-	//	Push an element to the slice
-	slice = Push(originalSlice, 4)
-
-	if Last(slice) != 4 || len(slice) != len(originalSlice)+1 {
-		t.Error("Failed to push element to the slice")
-	}
-
-	//	Push multiple elements to the slice
-	slice = Push(originalSlice, 4, 5, 6, 7)
-
-	if Last(slice) != 7 || len(slice) != len(originalSlice)+4 {
-		t.Error("Failed to push multiple elements to the slice")
-	}
-
-}
-
 //	Test Pop
 func TestPop(t *testing.T) {
 
