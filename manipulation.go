@@ -1,11 +1,12 @@
 package sliceutils
 
 //	Concatenate several slices
-func Concat[T any](slice []T, slices ...[]T) []T {
+func Concat[T any](slices ...[]T) []T {
+	ret := make([]T, len(slices[0])) //	TODO: Maybe calculate the length ahead of time?
 	for _, v := range slices {
-		slice = append(slice, v...)
+		ret = append(ret, v...)
 	}
-	return slice
+	return ret
 }
 
 //	Reverse a slice
