@@ -2,7 +2,7 @@ package sliceutils
 
 //	Concatenate several slices
 func Concat[T any](slices ...[]T) []T {
-	ret := make([]T, len(slices[0])) //	TODO: Maybe calculate the length ahead of time?
+	ret := make([]T, 0, len(slices[0])) //	TODO: Maybe calculate the length ahead of time?
 	for _, v := range slices {
 		ret = append(ret, v...)
 	}

@@ -42,7 +42,7 @@ func TestConcat(t *testing.T) {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual := Concat(tC.inputs...)
 			if !Equal(actual, tC.expected) {
-				t.Error("Failed to concatenate slices")
+				t.Errorf("Failed to concatenate slices\nwant:\t%v\ngot:\t%v", tC.expected, actual)
 			}
 		})
 	}
