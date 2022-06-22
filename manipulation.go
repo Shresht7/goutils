@@ -1,5 +1,10 @@
 package sliceutils
 
+import (
+	"fmt"
+	"strings"
+)
+
 //	Concatenate several slices
 func Concat[T any](slices ...[]T) []T {
 	ret := make([]T, 0, len(slices[0])) //	TODO: Maybe calculate the length ahead of time?
@@ -15,6 +20,15 @@ func Reverse[T any](slice []T) []T {
 		slice[i], slice[j] = slice[j], slice[i]
 	}
 	return slice
+}
+
+//	Assemble elements of a slice into an string using fmt.Sprint(element)
+func Join[T any](slice []T, separator string) string {
+	result := make([]string, len(slice))
+	for i, v := range slice {
+		result[i] = fmt.Sprint(v)
+	}
+	return strings.Join(result, separator)
 }
 
 //	Add elements on to the end of the slice. Same as the builtin append().

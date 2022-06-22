@@ -88,3 +88,42 @@ func TestReverse(t *testing.T) {
 	}
 
 }
+
+func TestJoin(t *testing.T) {
+
+	testCases := []struct {
+		desc     string
+		input    []any
+		sep      string
+		expected string
+	}{
+		{
+			desc:     "Should convert an integer slice into a string",
+			input:    []any{0, 1, 2, 3},
+			sep:      " + ",
+			expected: "0 + 1 + 2 + 3",
+		},
+		{
+			desc:     "Should convert an string slice into a string",
+			input:    []any{"A", "B", "C", "D", "E"},
+			sep:      "-->",
+			expected: "A-->B-->C-->D-->E",
+		},
+		{
+			desc:     "Should convert an string slice into a string",
+			input:    []any{[]int{0, 1}, []int{2, 3}},
+			sep:      "::",
+			expected: "[0 1]::[2 3]",
+		},
+	}
+
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			actual := Join(tC.input, tC.sep)
+			if actual != tC.expected {
+				t.Error("Failed to join elements of the slices into a string")
+			}
+		})
+	}
+
+}
