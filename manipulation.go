@@ -1,5 +1,13 @@
 package sliceutils
 
+//	Concatenate several slices
+func Concat[T any](slice []T, slices ...[]T) []T {
+	for _, v := range slices {
+		slice = append(slice, v...)
+	}
+	return slice
+}
+
 //	Reverse a slice
 func Reverse[T any](slice []T) []T {
 	for i, j := 0, len(slice)-1; i < j; i, j = i+1, j-1 {
