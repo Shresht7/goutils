@@ -55,3 +55,5 @@ func Shift[T any](slice *[]T) T {
 	(*slice) = (*slice)[1:]
 	return elem[0]
 }
+
+//	TODO: Implement Splice
