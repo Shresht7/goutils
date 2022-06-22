@@ -2,6 +2,9 @@ package sliceutils
 
 import "testing"
 
+//	TODO: Expand on these tests
+//	TODO?: Make this DRYer
+
 func TestConcat(t *testing.T) {
 
 	testCases := []struct {
@@ -155,6 +158,83 @@ func TestPush(t *testing.T) {
 			actual := Push(tC.input, tC.toPush...)
 			if !Equal(actual, tC.expected) {
 				t.Error("Failed to push elements onto the slice")
+			}
+		})
+	}
+
+}
+
+func TestPop(t *testing.T) {
+
+	testCases := []struct {
+		desc     string
+		input    []int
+		expected int
+	}{
+		{
+			desc:     "Should pop off the last element from the slice",
+			input:    []int{0, 1, 2, 3},
+			expected: 3,
+		},
+	}
+
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			actual := Pop(&tC.input)
+			if actual != tC.expected {
+				t.Error("Failed to pop off the last element from the slice")
+			}
+		})
+	}
+
+}
+
+func TestUnshift(t *testing.T) {
+
+	testCases := []struct {
+		desc      string
+		input     []int
+		toUnshift []int
+		expected  []int
+	}{
+		{
+			desc:      "Should unshift an element onto the slice",
+			input:     []int{0, 1, 2},
+			toUnshift: []int{-3, -2, -1},
+			expected:  []int{-3, -2, -1, 0, 1, 2},
+		},
+	}
+
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			actual := Unshift(tC.input, tC.toUnshift...)
+			if !Equal(actual, tC.expected) {
+				t.Error("Failed to unshift elements onto the slice")
+			}
+		})
+	}
+
+}
+
+func TestShift(t *testing.T) {
+
+	testCases := []struct {
+		desc     string
+		input    []int
+		expected int
+	}{
+		{
+			desc:     "Should remove the first element from the slice",
+			input:    []int{0, 1, 2},
+			expected: 0,
+		},
+	}
+
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			actual := Shift(&tC.input)
+			if actual != tC.expected {
+				t.Error("Failed to shift element from the slice")
 			}
 		})
 	}
