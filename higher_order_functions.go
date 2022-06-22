@@ -37,3 +37,30 @@ func Reduce[From any, To any](slice []From, cb func(accumulator To, current From
 
 	return val
 }
+
+//	Returns true if all elements satisfy the callback function
+func Every[T any](slice []T, cb func(value T, index int) bool) bool {
+
+	for i, v := range slice {
+		result := cb(v, i)
+		if !result {
+			return false
+		}
+	}
+
+	return true
+}
+
+//	Returns true if any one element satisfies the callback function
+func Some[T any](slice []T, cb func(value T, index int) bool) bool {
+
+	for i, v := range slice {
+		if cb(v, i) {
+			return true
+		}
+	}
+
+	return false
+}
+
+//	? Use All and Any instead of Every and Some

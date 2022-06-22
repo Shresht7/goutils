@@ -4,6 +4,8 @@ import (
 	"testing"
 )
 
+//	TODO: Improve these tests
+
 var slice []int = []int{0, 1, 2, 3, 4, 5, 6}
 
 func TestForEach(t *testing.T) {
@@ -43,6 +45,30 @@ func TestReduce(t *testing.T) {
 
 	if sum != 21 {
 		t.Error("Failed to reduce slice")
+	}
+
+}
+
+func TestEvery(t *testing.T) {
+
+	slice := []int{2, 4, 6, 8, 10}
+
+	divisibleBy2 := Every(slice, func(value, idx int) bool { return value%2 == 0 })
+
+	if !divisibleBy2 {
+		t.Error("Every element should be divisible by 2")
+	}
+
+}
+
+func TestSome(t *testing.T) {
+
+	slice := []int{1, 3, 5, 7, 9, 10}
+
+	divisibleBy2 := Some(slice, func(value, idx int) bool { return value%2 == 0 })
+
+	if !divisibleBy2 {
+		t.Error("At least one element should be divisible by 2")
 	}
 
 }
