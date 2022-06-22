@@ -48,3 +48,43 @@ func TestConcat(t *testing.T) {
 	}
 
 }
+
+func TestReverse(t *testing.T) {
+
+	testCases := []struct {
+		desc     string
+		slice    []int
+		expected []int
+	}{
+		{
+			desc:     "Should reverse a slice with two elements",
+			slice:    []int{0, 1},
+			expected: []int{1, 0},
+		},
+		{
+			desc:     "Should reverse a slice with many elements",
+			slice:    []int{0, 1, 2, 3},
+			expected: []int{3, 2, 1, 0},
+		},
+		{
+			desc:     "Should reverse a slice with one element",
+			slice:    []int{0},
+			expected: []int{0},
+		},
+		{
+			desc:     "Should reverse a slice with no element",
+			slice:    []int{},
+			expected: []int{},
+		},
+	}
+
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			actual := Reverse(tC.slice)
+			if !Equal(actual, tC.expected) {
+				t.Error("Failed to reverse a slice")
+			}
+		})
+	}
+
+}
