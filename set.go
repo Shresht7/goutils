@@ -44,3 +44,13 @@ func (s *Set[T]) Add(value T) *Set[T] {
 func (s *Set[T]) Clear() {
 	*s = make([]T, 0, s.Size())
 }
+
+//	Returns a boolean indicating whether this set is a subset of the given set
+func (s *Set[T]) IsSubSet(x *Set[T]) bool {
+	return Every(*s, func(v T, _ int) bool { return Includes(*x, v) })
+}
+
+//	Returns a boolean indicating whether this set is a superset of the given set
+func (s *Set[T]) IsSuperSet(x *Set[T]) bool {
+	return Every(*x, func(v T, _ int) bool { return Includes(*s, v) })
+}
