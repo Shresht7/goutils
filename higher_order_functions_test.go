@@ -228,6 +228,54 @@ func TestSome(t *testing.T) {
 	RunTestCases(testCases, t)
 
 }
+func TestFind(t *testing.T) {
+
+	okTestCases := &[]TestCase[int, bool]{
+		{
+			Desc: "Find 3 in the slice",
+			Fn: func() bool {
+				ok, _, _ := Find(sliceA, func(v, _ int) bool { return v == 3 })
+				return ok
+			},
+			Expected: true,
+			Fail:     Inequality[bool],
+		},
+		{
+			Desc: "Do not find 11 in the slice",
+			Fn: func() bool {
+				ok, _, _ := Find(sliceA, func(v, _ int) bool { return v == 11 })
+				return ok
+			},
+			Expected: false,
+			Fail:     Inequality[bool],
+		},
+	}
+
+	valueTestCases := &[]TestCase[int, int]{
+		{
+			Desc: "Find the first multiple of 4",
+			Fn: func() int {
+				_, v, _ := Find(sliceA, func(v, _ int) bool { return v%4 == 0 && v != 0 })
+				return v
+			},
+			Expected: 4,
+			Fail:     Inequality[int],
+		},
+		{
+			Desc: "Find the second multiple of 3",
+			Fn: func() int {
+				_, v, _ := Find(sliceA, func(v, _ int) bool { return v%3 == 0 && v != 3 && v != 0 })
+				return v
+			},
+			Expected: 6,
+			Fail:     Inequality[int],
+		},
+	}
+
+	RunTestCases(okTestCases, t)
+	RunTestCases(valueTestCases, t)
+
+}
 
 // ----------------
 // HELPER FUNCTIONS

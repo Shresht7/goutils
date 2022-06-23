@@ -72,3 +72,18 @@ func Some[T any](slice []T, cb ReturnCallback[T, bool]) bool {
 }
 
 //	? Use All and Any instead of Every and Some
+
+//	Returns the first element in the slice that satisfies the callback criteria.
+//	Returns a boolean indicating the success of the find operation, followed by the value and it's index.
+//	If the criteria fails, the boolean is false - i.e. the function failed to find the value.
+func Find[T any](slice []T, cb ReturnCallback[T, bool]) (bool, T, int) {
+
+	for i, v := range slice {
+		if cb(v, i) {
+			return true, v, i
+		}
+	}
+
+	return false, slice[0], -1
+
+}
