@@ -2,8 +2,6 @@ package set
 
 import (
 	"testing"
-
-	"github.com/Shresht7/sliceutils"
 )
 
 func TestSet(t *testing.T) {
@@ -12,7 +10,7 @@ func TestSet(t *testing.T) {
 
 	set := GetSet(slice)
 
-	if !sliceutils.Equal(set, []int{0, 1, 2, 3, 4, 5}) {
+	if !slice.Equal(set, []int{0, 1, 2, 3, 4, 5}) {
 		t.Error("Failed to create set")
 	}
 
