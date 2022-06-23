@@ -1,9 +1,7 @@
 package slice
 
-import "golang.org/x/exp/constraints"
-
 //	Check if two slices are equal
-func Equal[T constraints.Ordered](a, b []T) bool {
+func Equal[T comparable](a, b []T) bool {
 	if len(a) != len(b) {
 		return false
 	}

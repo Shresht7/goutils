@@ -49,7 +49,7 @@ s.ForEach(func (value, index int) { fmt.Println(index, value) })
 Check if two slices are equal
 
 ```go
-func Equal(T constraints.Ordered)(a, b []T) bool
+func Equal(T comparable)(a, b []T) bool
 ```
 ```go
 a := []int{0, 1, 2, 3}
@@ -175,7 +175,7 @@ ok, value, index := Find(slice, func (v, i int) bool { return v == 4 }) //  true
 Returns `true` if element is in the slice.
 
 ```go
-func Includes[T constraints.Ordered | bool](slice []T, element T) bool
+func Includes[T comparable](slice []T, element T) bool
 ```
 
 Example:

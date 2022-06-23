@@ -4,7 +4,6 @@ import (
 	"testing"
 
 	. "github.com/Shresht7/sliceutils/internal"
-	"golang.org/x/exp/constraints"
 )
 
 //	TODO: Improve these tests
@@ -304,6 +303,6 @@ func TestIncludes(t *testing.T) {
 // ----------------
 
 //	Helper function to check if the two given slices are not equal
-func SliceInequality[T constraints.Ordered](actual, expected []T) bool {
+func SliceInequality[T comparable](actual, expected []T) bool {
 	return !Equal(actual, expected)
 }

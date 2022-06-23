@@ -2,12 +2,11 @@ package set
 
 import (
 	"github.com/Shresht7/sliceutils/slice"
-	"golang.org/x/exp/constraints"
 )
 
-type Set[T constraints.Ordered] []T
+type Set[T comparable] []T
 
-func GetSet[T constraints.Ordered](slice []T) Set[T] {
+func GetSet[T comparable](slice []T) Set[T] {
 	result := make([]T, 0, len(slice))
 	uniqueValues := make(map[T]bool)
 	for _, v := range slice {

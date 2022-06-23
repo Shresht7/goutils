@@ -2,8 +2,6 @@ package test
 
 import (
 	"testing"
-
-	"golang.org/x/exp/constraints"
 )
 
 type TestCase[T, E any] struct {
@@ -26,6 +24,6 @@ func RunTestCases[T, E any](testCases *[]TestCase[T, E], t *testing.T) {
 
 }
 
-func Inequality[T constraints.Ordered | bool](actual, expected T) bool {
+func Inequality[T comparable](actual, expected T) bool {
 	return actual != expected
 }
