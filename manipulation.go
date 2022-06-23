@@ -57,3 +57,16 @@ func Shift[T any](slice *[]T) T {
 }
 
 //	TODO: Implement Splice
+
+//	Distribute elements of a slice into chunks of (at most) given size.
+func Chunk[T any](slice []T, size int) [][]T {
+	chunks := make([][]T, 0, (len(slice)/size)+1)
+
+	for len(slice)/size > 0 {
+		chunks = append(chunks, slice[:size])
+		slice = slice[size:]
+	}
+	chunks = append(chunks, slice)
+
+	return chunks
+}
