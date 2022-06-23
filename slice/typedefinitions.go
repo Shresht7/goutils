@@ -1,4 +1,4 @@
-package sliceutils
+package slice
 
 //	Callback function
 type Callback[T any] func(value T, index int)
