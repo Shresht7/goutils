@@ -9,10 +9,10 @@ var originalSlice []int = []int{0, 1, 2, 3}
 //	Test First
 func TestFirstNthAndLast(t *testing.T) {
 
-	var slice []int = originalSlice[:]
+	slice := From(originalSlice)
 
-	first := First(slice)
-	last := Last(slice)
+	first := slice.First()
+	last := slice.Last()
 
 	if first != 0 {
 		t.Error("Failed to get the first element from the slice")
@@ -22,7 +22,7 @@ func TestFirstNthAndLast(t *testing.T) {
 		t.Error("Failed to get the last element from the slice")
 	}
 
-	n := Nth(slice, 2)
+	n := slice.Nth(2)
 
 	if n != 1 {
 		t.Error("Failed to get 2nd element")
