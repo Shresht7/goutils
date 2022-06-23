@@ -240,3 +240,44 @@ func TestShift(t *testing.T) {
 	}
 
 }
+
+func TestChunks(t *testing.T) {
+
+	testCases := []struct {
+		desc     string
+		input    []int
+		size     int
+		expected [][]int
+	}{
+		{
+			desc:     "Chunk the slice with 2 elements each",
+			input:    []int{0, 1, 2, 3, 4, 5},
+			size:     2,
+			expected: [][]int{{0, 1}, {2, 3}, {4, 5}},
+		},
+		{
+			desc:     "Chunk the slice with 3 elements each",
+			input:    []int{0, 1, 2, 3, 4, 5},
+			size:     3,
+			expected: [][]int{{0, 1, 2}, {3, 4, 5}},
+		},
+		{
+			desc:     "Chunk an uneven slice with 2 elements",
+			input:    []int{0, 1, 2, 3, 4},
+			size:     2,
+			expected: [][]int{{0, 1}, {2, 3}, {4}},
+		},
+	}
+
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			actual := Chunk(tC.input, tC.size)
+			for i := 0; i < len(tC.expected); i++ {
+				if !Equal(actual[i], tC.expected[i]) {
+					t.Errorf("Failed to properly chunk slice\nwant:\t%v\ngot:\t%v", tC.expected[i], actual[i])
+				}
+			}
+		})
+	}
+
+}
