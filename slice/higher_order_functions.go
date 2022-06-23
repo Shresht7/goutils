@@ -1,4 +1,4 @@
-package sliceutils
+package slice
 
 import "golang.org/x/exp/constraints"
 

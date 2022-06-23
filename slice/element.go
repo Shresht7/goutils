@@ -1,4 +1,4 @@
-package sliceutils
+package slice
 
 //	Returns the first element of the slice
 func First[T any](slice []T) T {
