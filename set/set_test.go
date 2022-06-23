@@ -2,13 +2,15 @@ package set
 
 import (
 	"testing"
+
+	"github.com/Shresht7/sliceutils/slice"
 )
 
 func TestSet(t *testing.T) {
 
-	slice := []int{0, 1, 1, 1, 2, 3, 3, 3, 3, 3, 4, 5, 5}
+	sliceA := []int{0, 1, 1, 1, 2, 3, 3, 3, 3, 3, 4, 5, 5}
 
-	set := GetSet(slice)
+	set := GetSet(sliceA)
 
 	if !slice.Equal(set, []int{0, 1, 2, 3, 4, 5}) {
 		t.Error("Failed to create set")
