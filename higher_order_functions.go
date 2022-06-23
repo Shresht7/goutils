@@ -1,12 +1,12 @@
 package sliceutils
 
-func ForEach[T any](slice []T, cb func(value T, index int)) {
+func ForEach[T any](slice []T, cb Callback[T]) {
 	for i, v := range slice {
 		cb(v, i)
 	}
 }
 
-func Filter[T any](slice []T, cb func(value T, index int) bool) []T {
+func Filter[T any](slice []T, cb ReturnCallback[T, bool]) []T {
 	ret := make([]T, 0, len(slice))
 
 	for i, v := range slice {
@@ -18,8 +18,8 @@ func Filter[T any](slice []T, cb func(value T, index int) bool) []T {
 	return ret
 }
 
-func Map[T any](slice []T, cb func(value T, index int) T) []T {
-	ret := make([]T, len(slice))
+func Map[From, To any](slice []From, cb ReturnCallback[From, To]) []To {
+	ret := make([]To, len(slice))
 
 	for i, v := range slice {
 		ret[i] = cb(v, i)
@@ -28,7 +28,7 @@ func Map[T any](slice []T, cb func(value T, index int) T) []T {
 	return ret
 }
 
-func Reduce[From any, To any](slice []From, cb func(accumulator To, current From, index int, slice []From) To, initializer To) To {
+func Reduce[From, To any](slice []From, cb ReducerCallback[From, To], initializer To) To {
 	val := initializer
 
 	for i, v := range slice {
@@ -39,7 +39,7 @@ func Reduce[From any, To any](slice []From, cb func(accumulator To, current From
 }
 
 //	Returns true if all elements satisfy the callback function
-func Every[T any](slice []T, cb func(value T, index int) bool) bool {
+func Every[T any](slice []T, cb ReturnCallback[T, bool]) bool {
 
 	for i, v := range slice {
 		result := cb(v, i)
@@ -52,7 +52,7 @@ func Every[T any](slice []T, cb func(value T, index int) bool) bool {
 }
 
 //	Returns true if any one element satisfies the callback function
-func Some[T any](slice []T, cb func(value T, index int) bool) bool {
+func Some[T any](slice []T, cb ReturnCallback[T, bool]) bool {
 
 	for i, v := range slice {
 		if cb(v, i) {
