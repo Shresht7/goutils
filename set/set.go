@@ -1,6 +1,9 @@
-package sliceutils
+package set
 
-import "golang.org/x/exp/constraints"
+import (
+	"github.com/Shresht7/sliceutils"
+	"golang.org/x/exp/constraints"
+)
 
 type Set[T constraints.Ordered] []T
 
@@ -24,7 +27,7 @@ func (s *Set[T]) Size() int {
 
 //	Set has value
 func (s *Set[T]) Has(value T) bool {
-	return Includes(*s, value)
+	return sliceutils.Includes(*s, value)
 }
 
 //	Add another element to the set
@@ -47,10 +50,10 @@ func (s *Set[T]) Clear() {
 
 //	Returns a boolean indicating whether this set is a subset of the given set
 func (s *Set[T]) IsSubSet(x *Set[T]) bool {
-	return Every(*s, func(v T, _ int) bool { return Includes(*x, v) })
+	return sliceutils.Every(*s, func(v T, _ int) bool { return sliceutils.Includes(*x, v) })
 }
 
 //	Returns a boolean indicating whether this set is a superset of the given set
 func (s *Set[T]) IsSuperSet(x *Set[T]) bool {
-	return Every(*x, func(v T, _ int) bool { return Includes(*s, v) })
+	return sliceutils.Every(*x, func(v T, _ int) bool { return sliceutils.Includes(*s, v) })
 }
