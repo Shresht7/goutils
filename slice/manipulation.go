@@ -46,7 +46,7 @@ func Pop[T any](slice *[]T) T {
 
 //	Add elements on to the start of the slice.
 func Unshift[T any](slice []T, elements ...T) []T {
-	return append(elements, slice...)
+	return append(elements, slice...) //	?	Does this actually modify the slice?
 }
 
 //	Remove elements from the start of the slice.
