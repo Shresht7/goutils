@@ -1,11 +1,15 @@
 package sliceutils
 
+//	Execute the callback function for each element of the slice.
+//	The callback receives the element's value and index.
 func ForEach[T any](slice []T, cb Callback[T]) {
 	for i, v := range slice {
 		cb(v, i)
 	}
 }
 
+//	Filter the slice based on the callback criteria. Elements are filtered out
+//	if the callback returns false. The callback receives the element's value and index.
 func Filter[T any](slice []T, cb ReturnCallback[T, bool]) []T {
 	ret := make([]T, 0, len(slice))
 
@@ -18,6 +22,8 @@ func Filter[T any](slice []T, cb ReturnCallback[T, bool]) []T {
 	return ret
 }
 
+//	Map returns a new slice by applying the callback to each element of the given slice.
+//	The callback receives the value and the index and returns the mapped value.
 func Map[From, To any](slice []From, cb ReturnCallback[From, To]) []To {
 	ret := make([]To, len(slice))
 
@@ -28,6 +34,8 @@ func Map[From, To any](slice []From, cb ReturnCallback[From, To]) []To {
 	return ret
 }
 
+//	Reduces a slice into a single value using the given callback function.
+//	The callback receives the accumulated value, current value, index and the slice.
 func Reduce[From, To any](slice []From, cb ReducerCallback[From, To], initializer To) To {
 	val := initializer
 
