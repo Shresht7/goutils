@@ -56,7 +56,7 @@ func Shift[T any](slice *[]T) T {
 	return elem[0]
 }
 
-//	TODO: Implement Splice
+//	TODO: #8 Implement Splice
 
 //	Distribute elements of a slice into chunks of (at most) given size.
 func Chunk[T any](slice []T, size int) [][]T {
