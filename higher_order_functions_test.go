@@ -228,6 +228,7 @@ func TestSome(t *testing.T) {
 	RunTestCases(testCases, t)
 
 }
+
 func TestFind(t *testing.T) {
 
 	okTestCases := &[]TestCase[int, bool]{
@@ -274,6 +275,27 @@ func TestFind(t *testing.T) {
 
 	RunTestCases(okTestCases, t)
 	RunTestCases(valueTestCases, t)
+
+}
+
+func TestIncludes(t *testing.T) {
+
+	testCases := &[]TestCase[int, bool]{
+		{
+			Desc:     "Should include 3",
+			Fn:       func() bool { return Includes(sliceA, 3) },
+			Expected: false,
+			Fail:     Inequality[bool],
+		},
+		{
+			Desc:     "Should not include 99",
+			Fn:       func() bool { return Includes(sliceA, 99) },
+			Expected: true,
+			Fail:     Inequality[bool],
+		},
+	}
+
+	RunTestCases(testCases, t)
 
 }
 

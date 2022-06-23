@@ -1,5 +1,7 @@
 package sliceutils
 
+import "golang.org/x/exp/constraints"
+
 //	Execute the callback function for each element of the slice.
 //	The callback receives the element's value and index.
 func ForEach[T any](slice []T, cb Callback[T]) {
@@ -86,4 +88,10 @@ func Find[T any](slice []T, cb ReturnCallback[T, bool]) (bool, T, int) {
 
 	return false, slice[0], -1
 
+}
+
+//	Returns true when the slice contains the given element.
+func Includes[T constraints.Ordered | bool](slice []T, element T) bool {
+	ok, _, _ := Find(slice, func(v T, _ int) bool { return v == element })
+	return ok
 }
