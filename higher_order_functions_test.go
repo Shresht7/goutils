@@ -284,13 +284,13 @@ func TestIncludes(t *testing.T) {
 		{
 			Desc:     "Should include 3",
 			Fn:       func() bool { return Includes(sliceA, 3) },
-			Expected: false,
+			Expected: true,
 			Fail:     Inequality[bool],
 		},
 		{
 			Desc:     "Should not include 99",
 			Fn:       func() bool { return Includes(sliceA, 99) },
-			Expected: true,
+			Expected: false,
 			Fail:     Inequality[bool],
 		},
 	}
