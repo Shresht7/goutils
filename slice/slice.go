@@ -3,16 +3,6 @@ package slice
 //	Custom Implementation of slice of type T
 type Slice[T any] []T
 
-//	Turn a slice into a Slice
-func SliceFrom[T any](slice []T) Slice[T] {
-	return slice
-}
-
-//	Turn a Slice into a slice
-func (slice *Slice[T]) ToSlice() []T {
-	return *slice
-}
-
 //	Returns the first element of the slice
 func (slice *Slice[T]) First() T {
 	return (*slice)[0]

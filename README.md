@@ -24,10 +24,10 @@ func main() {
 }
 ```
 
-To use the method syntax, convert the `[]int` into `Slice[int]` provided by the package.
+To use the method syntax, typecast the `[]int` into `Slice[int]` provided by the package.
 
 ```go
-s := slice.From([]int{0, 1, 2, 3})
+s := slice.Slice[int]([]int{0, 1, 2, 3})
 s.ForEach(func (value, index int) { fmt.Println(index, value) })
 ```
 
