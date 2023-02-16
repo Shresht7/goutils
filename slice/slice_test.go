@@ -1,6 +1,7 @@
 package slice
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -52,6 +53,26 @@ func TestSlice(t *testing.T) {
 
 }
 
+func ExampleSlice() {
+
+	// Create a new slice
+	slice := New([]int{1, 2, 3, 4, 5})
+
+	// Get the length of the slice
+	fmt.Println(slice.Len())
+
+	// Get the capacity of the slice
+	fmt.Println(slice.Cap())
+
+	// Get the slice as a normal slice
+	fmt.Println(slice.AsSlice())
+
+	// Output:
+	// 5
+	// 5
+	// [1 2 3 4 5]
+}
+
 func TestSliceInteroperability(t *testing.T) {
 
 	originalSlice := []int{1, 2, 3, 4, 5}
@@ -100,6 +121,21 @@ func TestSliceInteroperability(t *testing.T) {
 		})
 	}
 
+}
+
+func Example_sliceInteroperability() {
+
+	// Create a new slice
+	slice := New([]int{1, 2, 3, 4, 5})
+
+	// Append to the slice
+	slice = append(slice, 6)
+
+	// Use the slice in functions that accept normal slices
+	fmt.Println(CalculateTotal(slice))
+
+	// Output:
+	// 21
 }
 
 // -------
