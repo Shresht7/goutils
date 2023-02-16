@@ -5,8 +5,7 @@ import (
 	"testing"
 )
 
-//	TODO: Expand on these tests
-//	TODO?: Make this DRYer
+// * CONCAT *
 
 func TestConcat(t *testing.T) {
 
@@ -55,7 +54,7 @@ func TestConcat(t *testing.T) {
 
 }
 
-func ExampleConcat_basic() {
+func ExampleConcat() {
 
 	a := []int{1, 2, 3}
 	b := []int{4, 5, 6}
@@ -81,7 +80,7 @@ func ExampleConcat_method() {
 	// [1 2 3 4 5 6 7 8 9]
 }
 
-func ExampleConcat_advanced() {
+func ExampleConcat_mixed() {
 
 	a := []int{1, 2, 3}
 	b := Slice[int]([]int{4, 5, 6})
@@ -94,6 +93,8 @@ func ExampleConcat_advanced() {
 	// Output:
 	// [1 2 3 4 5 6 7 8 9 10 11 12]
 }
+
+// * REVERSE *
 
 func TestReverse(t *testing.T) {
 
@@ -138,6 +139,7 @@ func TestReverse(t *testing.T) {
 func ExampleReverse() {
 
 	a := []int{1, 2, 3, 4, 5}
+
 	fmt.Println(Reverse(a))
 
 	// Output:
@@ -153,6 +155,8 @@ func ExampleReverse_method() {
 	// Output:
 	// [5 4 3 2 1]
 }
+
+// * JOIN *
 
 func TestJoin(t *testing.T) {
 
@@ -193,6 +197,28 @@ func TestJoin(t *testing.T) {
 
 }
 
+func ExampleJoin() {
+
+	a := []int{1, 2, 3, 4, 5}
+
+	fmt.Println(Join(a, ", "))
+
+	// Output:
+	// 1, 2, 3, 4, 5
+}
+
+func ExampleJoin_method() {
+
+	a := New([]int{1, 2, 3, 4, 5})
+
+	fmt.Println(a.Join(", "))
+
+	// Output:
+	// 1, 2, 3, 4, 5
+}
+
+// * PUSH *
+
 func TestPush(t *testing.T) {
 
 	testCases := []struct {
@@ -226,6 +252,30 @@ func TestPush(t *testing.T) {
 
 }
 
+func ExamplePush() {
+
+	a := []int{1, 2, 3, 4, 5}
+
+	fmt.Println(Push(a, 6, 7, 8, 9, 10))
+
+	// Output:
+	// [1 2 3 4 5 6 7 8 9 10]
+
+}
+
+func ExamplePush_method() {
+
+	a := New([]int{1, 2, 3, 4, 5})
+
+	fmt.Println(*a.Push(6, 7, 8, 9, 10))
+
+	// Output:
+	// [1 2 3 4 5 6 7 8 9 10]
+
+}
+
+// * POP *
+
 func TestPop(t *testing.T) {
 
 	testCases := []struct {
@@ -250,6 +300,30 @@ func TestPop(t *testing.T) {
 	}
 
 }
+
+func ExamplePop() {
+
+	a := []int{1, 2, 3, 4, 5}
+
+	fmt.Println(Pop(&a))
+
+	// Output:
+	// 5
+
+}
+
+func ExamplePop_method() {
+
+	a := New([]int{1, 2, 3, 4, 5})
+
+	fmt.Println(a.Pop())
+
+	// Output:
+	// 5
+
+}
+
+// * UNSHIFT *
 
 func TestUnshift(t *testing.T) {
 
@@ -278,6 +352,30 @@ func TestUnshift(t *testing.T) {
 
 }
 
+func ExampleUnshift() {
+
+	a := []int{1, 2, 3, 4, 5}
+
+	fmt.Println(Unshift(a, 0))
+
+	// Output:
+	// [0 1 2 3 4 5]
+
+}
+
+func ExampleUnshift_method() {
+
+	a := New([]int{1, 2, 3, 4, 5})
+
+	fmt.Println(*a.Unshift(0))
+
+	// Output:
+	// [0 1 2 3 4 5]
+
+}
+
+// * SHIFT *
+
 func TestShift(t *testing.T) {
 
 	testCases := []struct {
@@ -302,6 +400,30 @@ func TestShift(t *testing.T) {
 	}
 
 }
+
+func ExampleShift() {
+
+	a := []int{1, 2, 3, 4, 5}
+
+	fmt.Println(Shift(&a))
+
+	// Output:
+	// 1
+
+}
+
+func ExampleShift_method() {
+
+	a := New([]int{1, 2, 3, 4, 5})
+
+	fmt.Println(a.Shift())
+
+	// Output:
+	// 1
+
+}
+
+// * CHUNK *
 
 func TestChunks(t *testing.T) {
 
@@ -342,4 +464,24 @@ func TestChunks(t *testing.T) {
 		})
 	}
 
+}
+
+func ExampleChunk() {
+
+	a := []int{1, 2, 3, 4, 5}
+
+	fmt.Println(Chunk(a, 2))
+
+	// Output:
+	// [[1 2] [3 4] [5]]
+}
+
+func ExampleChunk_method() {
+
+	a := New([]int{1, 2, 3, 4, 5})
+
+	fmt.Println(a.Chunk(2))
+
+	// Output:
+	// [[1 2] [3 4] [5]]
 }

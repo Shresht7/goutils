@@ -119,14 +119,25 @@ func (slice *Slice[T]) Shift() T {
 
 // Distribute elements of a slice into chunks of (at most) given size.
 func Chunk[T any](slice []T, size int) [][]T {
+
+	// If the size is 0 or negative, return the slice as a single chunk
+	if size <= 0 {
+		return [][]T{slice}
+	}
+
+	// Instantiate a slice of slices to hold the chunks
 	chunks := make([][]T, 0, (len(slice)/size)+1)
 
+	// While elements can be distributed into chunks of given size
+	// append the chunk to the chunks slice and remove the chunk from the slice
 	for len(slice)/size > 0 {
 		chunks = append(chunks, slice[:size])
 		slice = slice[size:]
 	}
+	// Append the remaining elements to the chunks slice
 	chunks = append(chunks, slice)
 
+	// Return the chunks slice
 	return chunks
 }
 

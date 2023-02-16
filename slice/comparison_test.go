@@ -1,6 +1,9 @@
 package slice
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func TestEqual(t *testing.T) {
 
@@ -51,4 +54,18 @@ func TestEqual(t *testing.T) {
 		})
 	}
 
+}
+
+func ExampleEqual() {
+
+	a := []int{1, 2, 3}
+	b := []int{1, 2, 3}
+	c := []int{3, 2, 1, 0}
+
+	fmt.Printf("%v == %v is %v\n", a, b, Equal(a, b))
+	fmt.Printf("%v == %v is %v\n", a, c, Equal(a, c))
+
+	// Output:
+	// [1 2 3] == [1 2 3] is true
+	// [1 2 3] == [3 2 1 0] is false
 }
