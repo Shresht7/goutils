@@ -1,6 +1,9 @@
 package slice
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 //	TODO: Expand on these tests
 //	TODO?: Make this DRYer
@@ -52,6 +55,46 @@ func TestConcat(t *testing.T) {
 
 }
 
+func ExampleConcat_basic() {
+
+	a := []int{1, 2, 3}
+	b := []int{4, 5, 6}
+
+	res := Concat(a, b)
+	fmt.Println(res)
+
+	// Output:
+	// [1 2 3 4 5 6]
+}
+
+func ExampleConcat_method() {
+
+	a := []int{1, 2, 3}
+	b := []int{4, 5, 6}
+	c := Slice[int]([]int{7, 8, 9})
+
+	res := New(a)
+	res.Concat(b, c)
+	fmt.Println(res)
+
+	// Output:
+	// [1 2 3 4 5 6 7 8 9]
+}
+
+func ExampleConcat_advanced() {
+
+	a := []int{1, 2, 3}
+	b := Slice[int]([]int{4, 5, 6})
+	c := New([]int{7, 8, 9})
+	d := []int{10, 11, 12}
+
+	res := Concat(a, b, c, d)
+	fmt.Println(res)
+
+	// Output:
+	// [1 2 3 4 5 6 7 8 9 10 11 12]
+}
+
 func TestReverse(t *testing.T) {
 
 	testCases := []struct {
@@ -90,6 +133,25 @@ func TestReverse(t *testing.T) {
 		})
 	}
 
+}
+
+func ExampleReverse() {
+
+	a := []int{1, 2, 3, 4, 5}
+	fmt.Println(Reverse(a))
+
+	// Output:
+	// [5 4 3 2 1]
+}
+
+func ExampleReverse_method() {
+
+	a := New([]int{1, 2, 3, 4, 5})
+
+	fmt.Println(*a.Reverse())
+
+	// Output:
+	// [5 4 3 2 1]
 }
 
 func TestJoin(t *testing.T) {
