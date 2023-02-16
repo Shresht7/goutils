@@ -1,7 +1,27 @@
 package slice
 
-//	Custom Implementation of slice of type T
+//	Custom Implementation of Slice of type T
 type Slice[T any] []T
+
+// Instantiate a new Slice[T]
+func New[T any](slice []T) Slice[T] {
+	return Slice[T](slice)
+}
+
+// Returns the length of the Slice
+func (slice *Slice[T]) Len() int {
+	return len(*slice)
+}
+
+// Returns the capacity of the Slice
+func (slice *Slice[T]) Cap() int {
+	return cap(*slice)
+}
+
+// Returns the Slice as a normal slice
+func (slice *Slice[T]) AsSlice() []T {
+	return *slice
+}
 
 //	Executes the callback function for each element of the slice.
 //	The callback receives the value and the index of the element.
