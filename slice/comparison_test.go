@@ -2,15 +2,14 @@ package slice
 
 import "testing"
 
-type testCase[T any] struct {
-	desc     string
-	a        []T
-	b        []T
-	expected bool
-}
-
 func TestEqual(t *testing.T) {
-	testCases := []testCase[int]{
+
+	// Test Cases
+	testCases := []struct {
+		desc     string
+		a, b     []int
+		expected bool
+	}{
 		{
 			desc:     "Should return true if both slices are equal",
 			a:        []int{0, 1, 2, 3},
@@ -29,7 +28,21 @@ func TestEqual(t *testing.T) {
 			b:        []int{0, 0, 0, 0},
 			expected: false,
 		},
+		{
+			desc:     "Should return true if both slices are empty",
+			a:        []int{},
+			b:        []int{},
+			expected: true,
+		},
+		{
+			desc:     "Should return false if the order of elements is different",
+			a:        []int{0, 1, 2, 3},
+			b:        []int{3, 2, 1, 0},
+			expected: false,
+		},
 	}
+
+	// Run test cases
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			if Equal(tC.a, tC.b) != tC.expected {
@@ -37,4 +50,5 @@ func TestEqual(t *testing.T) {
 			}
 		})
 	}
+
 }
