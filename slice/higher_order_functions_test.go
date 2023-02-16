@@ -3,8 +3,21 @@ package slice
 import (
 	"testing"
 
-	. "github.com/Shresht7/sliceutils/internal"
+	. "github.com/Shresht7/sliceutils/internal/test"
 )
+
+// ----------------
+// HELPER FUNCTIONS
+// ----------------
+
+// Helper function to check if the two given slices are not equal
+func SliceInequality[T comparable](actual, expected []T) bool {
+	return !Equal(actual, expected)
+}
+
+// =====
+// TESTS
+// =====
 
 //	TODO: Improve these tests
 
@@ -13,7 +26,7 @@ var sliceB []string = []string{"A", "B", "C"}
 
 func TestForEach(t *testing.T) {
 
-	integerSliceTestCases := &[]TestCase[int, int]{
+	RunTestCases(&[]TestCase[int]{
 		{
 			Desc: "Should iterate over each entry in the slice",
 			Fn: func() int {
@@ -34,9 +47,9 @@ func TestForEach(t *testing.T) {
 			Expected: len(sliceA),
 			Fail:     Inequality[int],
 		},
-	}
+	}, t)
 
-	stringSliceTestCases := &[]TestCase[string, string]{
+	RunTestCases(&[]TestCase[string]{
 		{
 			Desc: "Should iterate over each entry in a string slice",
 			Fn: func() string {
@@ -47,16 +60,13 @@ func TestForEach(t *testing.T) {
 			Expected: "A->B->C->",
 			Fail:     Inequality[string],
 		},
-	}
-
-	RunTestCases(integerSliceTestCases, t)
-	RunTestCases(stringSliceTestCases, t)
+	}, t)
 
 }
 
 func TestFilter(t *testing.T) {
 
-	testCases := &[]TestCase[int, []int]{
+	RunTestCases(&[]TestCase[[]int]{
 		{
 			Desc: "Should return nothing",
 			Fn: func() []int {
@@ -105,14 +115,13 @@ func TestFilter(t *testing.T) {
 			Expected: []int{5},
 			Fail:     SliceInequality[int],
 		},
-	}
+	}, t)
 
-	RunTestCases(testCases, t)
 }
 
 func TestMap(t *testing.T) {
 
-	testCases := &[]TestCase[int, []int]{
+	RunTestCases(&[]TestCase[[]int]{
 		{
 			Desc: "Should return a slice with each value doubled",
 			Fn: func() []int {
@@ -137,9 +146,7 @@ func TestMap(t *testing.T) {
 			Expected: []int{},
 			Fail:     SliceInequality[int],
 		},
-	}
-
-	RunTestCases(testCases, t)
+	}, t)
 
 }
 
@@ -150,7 +157,7 @@ func TestReduce(t *testing.T) {
 		expectedSum += v
 	}
 
-	integerTestCases := &[]TestCase[int, int]{
+	RunTestCases(&[]TestCase[int]{
 		{
 			Desc: "Should return the sum of all elements in the slice",
 			Fn: func() int {
@@ -159,14 +166,14 @@ func TestReduce(t *testing.T) {
 			Expected: expectedSum,
 			Fail:     Inequality[int],
 		},
-	}
+	}, t)
 
 	expectedConcatenation := ""
 	for _, v := range sliceB {
 		expectedConcatenation += v
 	}
 
-	stringTestCases := &[]TestCase[string, string]{
+	RunTestCases(&[]TestCase[string]{
 		{
 			Desc: "Should concatenate all the elements in the slice",
 			Fn: func() string {
@@ -175,10 +182,7 @@ func TestReduce(t *testing.T) {
 			Expected: expectedConcatenation,
 			Fail:     Inequality[string],
 		},
-	}
-
-	RunTestCases(integerTestCases, t)
-	RunTestCases(stringTestCases, t)
+	}, t)
 
 }
 
@@ -186,7 +190,7 @@ func TestEvery(t *testing.T) {
 
 	slice := []int{2, 4, 6, 8, 10}
 
-	testCases := &[]TestCase[int, bool]{
+	RunTestCases(&[]TestCase[bool]{
 		{
 			Desc:     "Every element should be divisible by 2",
 			Fn:       func() bool { return Every(slice, func(v, _ int) bool { return v%2 == 0 }) },
@@ -199,9 +203,7 @@ func TestEvery(t *testing.T) {
 			Expected: false,
 			Fail:     Inequality[bool],
 		},
-	}
-
-	RunTestCases(testCases, t)
+	}, t)
 
 }
 
@@ -209,7 +211,7 @@ func TestSome(t *testing.T) {
 
 	slice := []int{1, 3, 5, 7, 9, 10}
 
-	testCases := &[]TestCase[int, bool]{
+	RunTestCases(&[]TestCase[bool]{
 		{
 			Desc:     "Every element should not be divisible by 2",
 			Fn:       func() bool { return Every(slice, func(v, _ int) bool { return v%2 == 0 }) },
@@ -222,15 +224,13 @@ func TestSome(t *testing.T) {
 			Expected: true,
 			Fail:     Inequality[bool],
 		},
-	}
-
-	RunTestCases(testCases, t)
+	}, t)
 
 }
 
 func TestFind(t *testing.T) {
 
-	okTestCases := &[]TestCase[int, bool]{
+	RunTestCases(&[]TestCase[bool]{
 		{
 			Desc: "Find 3 in the slice",
 			Fn: func() bool {
@@ -249,9 +249,9 @@ func TestFind(t *testing.T) {
 			Expected: false,
 			Fail:     Inequality[bool],
 		},
-	}
+	}, t)
 
-	valueTestCases := &[]TestCase[int, int]{
+	RunTestCases(&[]TestCase[int]{
 		{
 			Desc: "Find the first multiple of 4",
 			Fn: func() int {
@@ -270,16 +270,13 @@ func TestFind(t *testing.T) {
 			Expected: 6,
 			Fail:     Inequality[int],
 		},
-	}
-
-	RunTestCases(okTestCases, t)
-	RunTestCases(valueTestCases, t)
+	}, t)
 
 }
 
 func TestIncludes(t *testing.T) {
 
-	testCases := &[]TestCase[int, bool]{
+	RunTestCases(&[]TestCase[bool]{
 		{
 			Desc:     "Should include 3",
 			Fn:       func() bool { return Includes(sliceA, 3) },
@@ -292,17 +289,6 @@ func TestIncludes(t *testing.T) {
 			Expected: false,
 			Fail:     Inequality[bool],
 		},
-	}
+	}, t)
 
-	RunTestCases(testCases, t)
-
-}
-
-// ----------------
-// HELPER FUNCTIONS
-// ----------------
-
-//	Helper function to check if the two given slices are not equal
-func SliceInequality[T comparable](actual, expected []T) bool {
-	return !Equal(actual, expected)
 }
