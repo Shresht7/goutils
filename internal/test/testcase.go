@@ -4,14 +4,22 @@ import (
 	"testing"
 )
 
-type TestCase[T, E any] struct {
+// ---------
+// TEST CASE
+// ---------
+
+type TestCase[T any] struct {
 	Desc     string
-	Fn       func() E
-	Expected E
-	Fail     func(actual, expected E) bool
+	Fn       func() T
+	Expected T
+	Fail     func(actual, expected T) bool
 }
 
-func RunTestCases[T, E any](testCases *[]TestCase[T, E], t *testing.T) {
+// --------------
+// RUN TEST CASES
+// --------------
+
+func RunTestCases[T any](testCases *[]TestCase[T], t *testing.T) {
 
 	for _, testCase := range *testCases {
 		t.Run(testCase.Desc, func(t *testing.T) {
@@ -23,6 +31,10 @@ func RunTestCases[T, E any](testCases *[]TestCase[T, E], t *testing.T) {
 	}
 
 }
+
+// -------
+// HELPERS
+// -------
 
 func Inequality[T comparable](actual, expected T) bool {
 	return actual != expected
