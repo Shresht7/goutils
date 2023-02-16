@@ -3,7 +3,7 @@ package slice
 //	Custom Implementation of Slice of type T
 type Slice[T any] []T
 
-// Instantiate a new Slice[T]
+// Instantiate a new Slice[T] from a normal slice
 func New[T any](slice []T) Slice[T] {
 	return Slice[T](slice)
 }
