@@ -3,21 +3,6 @@ package slice
 //	Custom Implementation of slice of type T
 type Slice[T any] []T
 
-//	Returns the first element of the slice
-func (slice *Slice[T]) First() T {
-	return (*slice)[0]
-}
-
-//	Returns the last element of the slice
-func (slice *Slice[T]) Last() T {
-	return (*slice)[len(*slice)-1]
-}
-
-//	Returns the nth element of the slice
-func (slice *Slice[T]) Nth(n int) T {
-	return (*slice)[n-1]
-}
-
 //	Executes the callback function for each element of the slice.
 //	The callback receives the value and the index of the element.
 func (slice *Slice[T]) ForEach(cb Callback[T]) {
