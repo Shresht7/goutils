@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-// * CONCAT *
+// * CONCAT * //
 
 // Concatenate several slices
 func Concat[T any](slices ...[]T) []T {
@@ -21,7 +21,7 @@ func (slice *Slice[T]) Concat(slices ...[]T) *Slice[T] {
 	return slice
 }
 
-// * REVERSE *
+// * REVERSE * //
 
 // Reverse a slice
 func Reverse[T any](slice []T) []T {
@@ -37,7 +37,7 @@ func (slice *Slice[T]) Reverse() *Slice[T] {
 	return slice
 }
 
-// * JOIN *
+// * JOIN * //
 
 // Assemble elements of a slice into an string using fmt.Sprint(element)
 func Join[T any](slice []T, separator string) string {
@@ -53,7 +53,7 @@ func (slice *Slice[T]) Join(separator string) string {
 	return Join(*slice, separator)
 }
 
-// * PUSH *
+// * PUSH * //
 
 // Add elements on to the end of the slice. Same as the builtin append().
 func Push[T any](slice []T, elements ...T) []T {
@@ -66,7 +66,7 @@ func (slice *Slice[T]) Push(elements ...T) *Slice[T] {
 	return slice
 }
 
-// * POP *
+// * POP * //
 
 // Removes elements from the end of the slice.
 func Pop[T any](slice *[]T) T {
@@ -84,7 +84,7 @@ func (slice *Slice[T]) Pop() T {
 	return elem[0]
 }
 
-// * UNSHIFT *
+// * UNSHIFT * //
 
 // Add elements on to the start of the slice.
 func Unshift[T any](slice []T, elements ...T) []T {
@@ -97,7 +97,7 @@ func (slice *Slice[T]) Unshift(elements ...T) *Slice[T] {
 	return slice
 }
 
-// * SHIFT *
+// * SHIFT * //
 
 // Remove elements from the start of the slice.
 func Shift[T any](slice *[]T) T {
@@ -115,9 +115,9 @@ func (slice *Slice[T]) Shift() T {
 
 //	TODO: #8 Implement Splice
 
-// * CHUNK *
+// * CHUNK * //
 
-// Distribute elements of a slice into chunks of (at most) given size.
+// Distribute elements of a slice into chunks of (at most) given size
 func Chunk[T any](slice []T, size int) [][]T {
 
 	// If the size is 0 or negative, return the slice as a single chunk

@@ -5,10 +5,11 @@ import (
 	"testing"
 )
 
-// * CONCAT *
+// * CONCAT * //
 
 func TestConcat(t *testing.T) {
 
+	// Test Cases
 	testCases := []struct {
 		desc     string
 		inputs   [][]int
@@ -43,11 +44,12 @@ func TestConcat(t *testing.T) {
 		},
 	}
 
+	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual := Concat(tC.inputs...)
 			if !Equal(actual, tC.expected) {
-				t.Errorf("Failed to concatenate slices\nwant:\t%v\ngot:\t%v", tC.expected, actual)
+				t.Errorf("%s\nwant: %v\ngot: %v", tC.desc, tC.expected, actual)
 			}
 		})
 	}
@@ -55,7 +57,6 @@ func TestConcat(t *testing.T) {
 }
 
 func ExampleConcat() {
-
 	a := []int{1, 2, 3}
 	b := []int{4, 5, 6}
 
@@ -67,7 +68,6 @@ func ExampleConcat() {
 }
 
 func ExampleConcat_method() {
-
 	a := []int{1, 2, 3}
 	b := []int{4, 5, 6}
 	c := Slice[int]([]int{7, 8, 9})
@@ -81,7 +81,6 @@ func ExampleConcat_method() {
 }
 
 func ExampleConcat_mixed() {
-
 	a := []int{1, 2, 3}
 	b := Slice[int]([]int{4, 5, 6})
 	c := New([]int{7, 8, 9})
@@ -94,10 +93,11 @@ func ExampleConcat_mixed() {
 	// [1 2 3 4 5 6 7 8 9 10 11 12]
 }
 
-// * REVERSE *
+// * REVERSE * //
 
 func TestReverse(t *testing.T) {
 
+	// Test Cases
 	testCases := []struct {
 		desc     string
 		slice    []int
@@ -125,11 +125,12 @@ func TestReverse(t *testing.T) {
 		},
 	}
 
+	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual := Reverse(tC.slice)
 			if !Equal(actual, tC.expected) {
-				t.Error("Failed to reverse a slice")
+				t.Errorf("%s\nwant: %v\ngot: %v", tC.desc, tC.expected, actual)
 			}
 		})
 	}
@@ -137,7 +138,6 @@ func TestReverse(t *testing.T) {
 }
 
 func ExampleReverse() {
-
 	a := []int{1, 2, 3, 4, 5}
 
 	fmt.Println(Reverse(a))
@@ -147,7 +147,6 @@ func ExampleReverse() {
 }
 
 func ExampleReverse_method() {
-
 	a := New([]int{1, 2, 3, 4, 5})
 
 	fmt.Println(*a.Reverse())
@@ -156,10 +155,11 @@ func ExampleReverse_method() {
 	// [5 4 3 2 1]
 }
 
-// * JOIN *
+// * JOIN * //
 
 func TestJoin(t *testing.T) {
 
+	// Test Cases
 	testCases := []struct {
 		desc     string
 		input    []any
@@ -186,11 +186,12 @@ func TestJoin(t *testing.T) {
 		},
 	}
 
+	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual := Join(tC.input, tC.sep)
 			if actual != tC.expected {
-				t.Error("Failed to join elements of the slices into a string")
+				t.Errorf("%s\nwant: %v\ngot: %v", tC.desc, tC.expected, actual)
 			}
 		})
 	}
@@ -198,7 +199,6 @@ func TestJoin(t *testing.T) {
 }
 
 func ExampleJoin() {
-
 	a := []int{1, 2, 3, 4, 5}
 
 	fmt.Println(Join(a, ", "))
@@ -208,7 +208,6 @@ func ExampleJoin() {
 }
 
 func ExampleJoin_method() {
-
 	a := New([]int{1, 2, 3, 4, 5})
 
 	fmt.Println(a.Join(", "))
@@ -217,10 +216,11 @@ func ExampleJoin_method() {
 	// 1, 2, 3, 4, 5
 }
 
-// * PUSH *
+// * PUSH * //
 
 func TestPush(t *testing.T) {
 
+	// Test Cases
 	testCases := []struct {
 		desc     string
 		input    []int
@@ -241,11 +241,12 @@ func TestPush(t *testing.T) {
 		},
 	}
 
+	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual := Push(tC.input, tC.toPush...)
 			if !Equal(actual, tC.expected) {
-				t.Error("Failed to push elements onto the slice")
+				t.Errorf("%s\nwant: %v\ngot: %v", tC.desc, tC.expected, actual)
 			}
 		})
 	}
@@ -253,31 +254,28 @@ func TestPush(t *testing.T) {
 }
 
 func ExamplePush() {
-
 	a := []int{1, 2, 3, 4, 5}
 
 	fmt.Println(Push(a, 6, 7, 8, 9, 10))
 
 	// Output:
 	// [1 2 3 4 5 6 7 8 9 10]
-
 }
 
 func ExamplePush_method() {
-
 	a := New([]int{1, 2, 3, 4, 5})
 
 	fmt.Println(*a.Push(6, 7, 8, 9, 10))
 
 	// Output:
 	// [1 2 3 4 5 6 7 8 9 10]
-
 }
 
-// * POP *
+// * POP * //
 
 func TestPop(t *testing.T) {
 
+	// Test Cases
 	testCases := []struct {
 		desc     string
 		input    []int
@@ -290,11 +288,12 @@ func TestPop(t *testing.T) {
 		},
 	}
 
+	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual := Pop(&tC.input)
 			if actual != tC.expected {
-				t.Error("Failed to pop off the last element from the slice")
+				t.Errorf("%s\nwant: %v\n got: %v", tC.desc, tC.expected, actual)
 			}
 		})
 	}
@@ -302,31 +301,28 @@ func TestPop(t *testing.T) {
 }
 
 func ExamplePop() {
-
 	a := []int{1, 2, 3, 4, 5}
 
 	fmt.Println(Pop(&a))
 
 	// Output:
 	// 5
-
 }
 
 func ExamplePop_method() {
-
 	a := New([]int{1, 2, 3, 4, 5})
 
 	fmt.Println(a.Pop())
 
 	// Output:
 	// 5
-
 }
 
-// * UNSHIFT *
+// * UNSHIFT * //
 
 func TestUnshift(t *testing.T) {
 
+	// Test Cases
 	testCases := []struct {
 		desc      string
 		input     []int
@@ -341,11 +337,12 @@ func TestUnshift(t *testing.T) {
 		},
 	}
 
+	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual := Unshift(tC.input, tC.toUnshift...)
 			if !Equal(actual, tC.expected) {
-				t.Error("Failed to unshift elements onto the slice")
+				t.Errorf("%s\nwant: %v\ngot: %v", tC.desc, tC.expected, actual)
 			}
 		})
 	}
@@ -353,31 +350,28 @@ func TestUnshift(t *testing.T) {
 }
 
 func ExampleUnshift() {
-
 	a := []int{1, 2, 3, 4, 5}
 
 	fmt.Println(Unshift(a, 0))
 
 	// Output:
 	// [0 1 2 3 4 5]
-
 }
 
 func ExampleUnshift_method() {
-
 	a := New([]int{1, 2, 3, 4, 5})
 
 	fmt.Println(*a.Unshift(0))
 
 	// Output:
 	// [0 1 2 3 4 5]
-
 }
 
-// * SHIFT *
+// * SHIFT * //
 
 func TestShift(t *testing.T) {
 
+	// Test Cases
 	testCases := []struct {
 		desc     string
 		input    []int
@@ -390,11 +384,12 @@ func TestShift(t *testing.T) {
 		},
 	}
 
+	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual := Shift(&tC.input)
 			if actual != tC.expected {
-				t.Error("Failed to shift element from the slice")
+				t.Errorf("%s\nwant: %v\ngot: %v", tC.desc, tC.expected, actual)
 			}
 		})
 	}
@@ -402,31 +397,28 @@ func TestShift(t *testing.T) {
 }
 
 func ExampleShift() {
-
 	a := []int{1, 2, 3, 4, 5}
 
 	fmt.Println(Shift(&a))
 
 	// Output:
 	// 1
-
 }
 
 func ExampleShift_method() {
-
 	a := New([]int{1, 2, 3, 4, 5})
 
 	fmt.Println(a.Shift())
 
 	// Output:
 	// 1
-
 }
 
-// * CHUNK *
+// * CHUNK * //
 
 func TestChunks(t *testing.T) {
 
+	// Test Cases
 	testCases := []struct {
 		desc     string
 		input    []int
@@ -453,12 +445,13 @@ func TestChunks(t *testing.T) {
 		},
 	}
 
+	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual := Chunk(tC.input, tC.size)
 			for i := 0; i < len(tC.expected); i++ {
 				if !Equal(actual[i], tC.expected[i]) {
-					t.Errorf("Failed to properly chunk slice\nwant:\t%v\ngot:\t%v", tC.expected[i], actual[i])
+					t.Errorf("%s\nwant: %v\ngot: %v", tC.desc, tC.expected[i], actual[i])
 				}
 			}
 		})
@@ -467,7 +460,6 @@ func TestChunks(t *testing.T) {
 }
 
 func ExampleChunk() {
-
 	a := []int{1, 2, 3, 4, 5}
 
 	fmt.Println(Chunk(a, 2))
@@ -477,7 +469,6 @@ func ExampleChunk() {
 }
 
 func ExampleChunk_method() {
-
 	a := New([]int{1, 2, 3, 4, 5})
 
 	fmt.Println(a.Chunk(2))

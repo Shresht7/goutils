@@ -7,6 +7,7 @@ import (
 
 func TestSlice(t *testing.T) {
 
+	// Test Data
 	originalSlice := []int{1, 2, 3, 4, 5}
 
 	// Test Cases
@@ -54,7 +55,6 @@ func TestSlice(t *testing.T) {
 }
 
 func ExampleSlice() {
-
 	// Create a new slice
 	slice := New([]int{1, 2, 3, 4, 5})
 
@@ -75,6 +75,7 @@ func ExampleSlice() {
 
 func TestSliceInteroperability(t *testing.T) {
 
+	// Test Data
 	originalSlice := []int{1, 2, 3, 4, 5}
 
 	// Test Cases
@@ -124,7 +125,6 @@ func TestSliceInteroperability(t *testing.T) {
 }
 
 func Example_sliceInteroperability() {
-
 	// Create a new slice
 	slice := New([]int{1, 2, 3, 4, 5})
 

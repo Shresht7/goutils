@@ -1,6 +1,6 @@
 package slice
 
-// * FIRST *
+// * FIRST * //
 
 // Returns the first element of the slice
 func First[T any](slice []T) T {
@@ -12,7 +12,7 @@ func (slice *Slice[T]) First() T {
 	return First(*slice)
 }
 
-// * LAST *
+// * LAST * //
 
 // Returns the last element of the slice
 func Last[T any](slice []T) T {
@@ -24,7 +24,7 @@ func (slice *Slice[T]) Last() T {
 	return Last(*slice)
 }
 
-// * Nth *
+// * Nth * //
 
 // Returns the nth element of the slice
 func Nth[T any](slice []T, n int) T {
@@ -35,3 +35,5 @@ func Nth[T any](slice []T, n int) T {
 func (slice *Slice[T]) Nth(n int) T {
 	return Nth(*slice, n)
 }
+
+// TODO: Implement At()

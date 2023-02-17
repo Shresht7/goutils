@@ -45,7 +45,7 @@ func TestEqual(t *testing.T) {
 		},
 	}
 
-	// Run test cases
+	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			if Equal(tC.a, tC.b) != tC.expected {
@@ -57,7 +57,6 @@ func TestEqual(t *testing.T) {
 }
 
 func ExampleEqual() {
-
 	a := []int{1, 2, 3}
 	b := []int{1, 2, 3}
 	c := []int{3, 2, 1, 0}

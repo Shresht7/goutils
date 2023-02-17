@@ -1,5 +1,7 @@
 package slice
 
+// * EQUAL *//
+
 // Check if two slices are equal
 func Equal[T comparable](a, b []T) bool {
 

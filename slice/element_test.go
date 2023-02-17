@@ -34,7 +34,7 @@ func TestElement(t *testing.T) {
 		},
 	}
 
-	// Run test cases
+	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
 			actual := tC.fn(tC.slice)
@@ -47,56 +47,46 @@ func TestElement(t *testing.T) {
 }
 
 func ExampleFirst() {
-
 	a := []int{1, 2, 3, 4, 5}
 
 	fmt.Println(First(a))
 
 	// Output:
 	// 1
-
 }
 
 func ExampleFirst_method() {
-
 	a := New([]int{1, 2, 3, 4, 5})
 
 	fmt.Println(a.First())
 
 	// Output:
 	// 1
-
 }
 
 func ExampleLast() {
-
 	a := []int{1, 2, 3, 4, 5}
 
 	fmt.Println(Last(a))
 
 	// Output:
 	// 5
-
 }
 
 func ExampleLast_method() {
-
 	a := New([]int{1, 2, 3, 4, 5})
 
 	fmt.Println(a.Last())
 
 	// Output:
 	// 5
-
 }
 
 func ExampleNth() {
-
 	a := []int{1, 2, 3, 4, 5}
 
 	fmt.Println(Nth(a, 2))
 
 	// Output:
 	// 2
-
 }
