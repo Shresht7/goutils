@@ -36,4 +36,26 @@ func (slice *Slice[T]) Nth(n int) T {
 	return Nth(*slice, n)
 }
 
-// TODO: Implement At()
+// * AT * //
+
+// Returns the element at the given index
+func At[T any](slice []T, index int) T {
+
+	// If the index is negative, we need to count from the end of the slice
+	if index < 0 {
+		index = len(slice) + index
+	}
+
+	// If the index is greater than the length of the slice, we need to wrap around
+	if index > len(slice)-1 {
+		index = index % len(slice)
+	}
+
+	// Return the element at the given index
+	return slice[index]
+}
+
+// Returns the element at the given index
+func (slice *Slice[T]) At(index int) T {
+	return At(*slice, index)
+}
