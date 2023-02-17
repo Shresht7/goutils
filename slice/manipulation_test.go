@@ -414,6 +414,76 @@ func ExampleShift_method() {
 	// 1
 }
 
+// * SPLICE * //
+
+func TestSplice(t *testing.T) {
+
+	// Test Cases
+	testCases := []struct {
+		desc     string
+		input    []int
+		start    int
+		delete   int
+		toAdd    []int
+		expected []int
+	}{
+		{
+			desc:     "Should remove 2 elements from the slice and add 2 elements",
+			input:    []int{0, 1, 2, 3, 4, 5},
+			start:    2,
+			delete:   2,
+			toAdd:    []int{6, 7},
+			expected: []int{0, 1, 6, 7, 4, 5},
+		},
+		{
+			desc:     "Should remove 2 elements from the slice and add 0 elements",
+			input:    []int{0, 1, 2, 3, 4, 5},
+			start:    2,
+			delete:   2,
+			toAdd:    []int{},
+			expected: []int{0, 1, 4, 5},
+		},
+		{
+			desc:     "Should remove 0 elements from the slice and add 2 elements",
+			input:    []int{0, 1, 2, 3, 4, 5},
+			start:    2,
+			delete:   0,
+			toAdd:    []int{6, 7},
+			expected: []int{0, 1, 6, 7, 2, 3, 4, 5},
+		},
+		{
+			desc:     "Should remove 0 elements from the slice and add 0 elements",
+			input:    []int{0, 1, 2, 3, 4, 5},
+			start:    2,
+			delete:   0,
+			toAdd:    []int{},
+			expected: []int{0, 1, 2, 3, 4, 5},
+		},
+	}
+
+	// Run Tests
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			actual := Splice(&tC.input, tC.start, tC.delete, tC.toAdd...)
+			if !Equal(tC.input, tC.expected) {
+				t.Errorf("%s\nwant: %v\ngot: %v", tC.desc, tC.expected, actual)
+			}
+		})
+	}
+
+}
+
+func ExampleSplice() {
+	a := []int{1, 2, 3, 4, 5}
+
+	Splice(&a, 2, 2, 6, 7)
+
+	fmt.Println(a)
+
+	// Output:
+	// [1 2 6 7 5]
+}
+
 // * CHUNK * //
 
 func TestChunks(t *testing.T) {

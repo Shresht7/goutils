@@ -113,7 +113,45 @@ func (slice *Slice[T]) Shift() T {
 	return elem[0]
 }
 
-//	TODO: #8 Implement Splice
+// * SPLICE * //
+
+// Remove elements from the slice and replace them with new elements.
+func Splice[T any](slice *[]T, start, deleteCount int, elements ...T) []T {
+	// If the start is negative, start from the end of the slice
+	if start < 0 {
+		start = len(*slice) + start
+	}
+
+	// If the start is greater than the length of the slice, start from the end of the slice
+	if start > len(*slice) {
+		start = len(*slice)
+	}
+
+	// If the deleteCount is negative, set it to 0
+	if deleteCount < 0 {
+		deleteCount = 0
+	}
+
+	// If the deleteCount is greater than the length of the slice, set it to the length of the slice
+	if deleteCount > len(*slice) {
+		deleteCount = len(*slice)
+	}
+
+	// If the deleteCount is greater than the length of the slice minus the start, set it to the length of the slice minus the start
+	if deleteCount > len(*slice)-start {
+		deleteCount = len(*slice) - start
+	}
+
+	// Remove the elements
+	removed := (*slice)[start : start+deleteCount]
+	*slice = append((*slice)[:start], (*slice)[start+deleteCount:]...)
+
+	// Add the new elements
+	*slice = append((*slice)[:start], append(elements, (*slice)[start:]...)...)
+
+	// Return the removed elements
+	return removed
+}
 
 // * CHUNK * //
 
