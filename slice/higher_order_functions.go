@@ -143,6 +143,29 @@ func (slice *Slice[T]) Find(cb ReturnCallback[T, bool]) (bool, T, int) {
 	return Find(*slice, cb)
 }
 
+// * FIND LAST * //
+
+// Returns the last element in the slice that satisfies the callback criteria.
+// Returns a boolean indicating the success of the find operation, followed by the value and it's index.
+// If the criteria fails, the boolean is false - i.e. the function failed to find the value.
+func FindLast[T any](slice []T, cb ReturnCallback[T, bool]) (bool, T, int) {
+
+	for i := len(slice) - 1; i >= 0; i-- {
+		if cb(slice[i], i) {
+			return true, slice[i], i
+		}
+	}
+
+	return false, slice[0], -1
+}
+
+// Returns the last element in the slice that satisfies the callback criteria.
+// Returns a boolean indicating the success of the find operation, followed by the value and it's index.
+// If the criteria fails, the boolean is false - i.e. the function failed to find the value.
+func (slice *Slice[T]) FindLast(cb ReturnCallback[T, bool]) (bool, T, int) {
+	return FindLast(*slice, cb)
+}
+
 // * INCLUDES * //
 
 // Returns true when the slice contains the given element.
