@@ -5,41 +5,31 @@ import (
 	"testing"
 )
 
-func TestElement(t *testing.T) {
+// * FIRST * //
+
+func TestFirst(t *testing.T) {
+
+	// Test Data
+	slice := []int{0, 1, 2, 3}
 
 	// Test Cases
 	testCases := []struct {
 		desc     string
-		slice    []int
-		fn       func(slice []int) int
+		actual   int
 		expected int
 	}{
 		{
 			desc:     "Should return the first element of the slice",
-			slice:    []int{0, 1, 2, 3},
-			fn:       First[int],
+			actual:   First(slice),
 			expected: 0,
-		},
-		{
-			desc:     "Should return the last element of the slice",
-			slice:    []int{0, 1, 2, 3},
-			fn:       Last[int],
-			expected: 3,
-		},
-		{
-			desc:     "Should return the nth element of the slice",
-			slice:    []int{0, 1, 2, 3},
-			fn:       func(slice []int) int { return Nth(slice, 2) },
-			expected: 1,
 		},
 	}
 
 	// Run Tests
 	for _, tC := range testCases {
 		t.Run(tC.desc, func(t *testing.T) {
-			actual := tC.fn(tC.slice)
-			if actual != tC.expected {
-				t.Errorf("want %d, got %d", tC.expected, actual)
+			if tC.actual != tC.expected {
+				t.Errorf("%s\nwant %d, got %d", tC.desc, tC.expected, tC.actual)
 			}
 		})
 	}
@@ -47,48 +37,131 @@ func TestElement(t *testing.T) {
 }
 
 func ExampleFirst() {
-	a := []int{1, 2, 3, 4, 5}
+	// Test Data
+	slice := []int{0, 1, 2, 3}
 
-	fmt.Println(First(a))
+	first := First(slice)
 
-	// Output:
-	// 1
+	fmt.Println(first)
+
+	// Output: 0
 }
 
 func ExampleFirst_method() {
-	a := New([]int{1, 2, 3, 4, 5})
+	// Test Data
+	slice := New([]int{0, 1, 2, 3})
 
-	fmt.Println(a.First())
+	first := slice.First()
 
-	// Output:
-	// 1
+	fmt.Println(first)
+
+	// Output: 0
+}
+
+// * LAST * //
+
+func TestLast(t *testing.T) {
+
+	// Test Data
+	slice := []int{0, 1, 2, 3}
+
+	// Test Cases
+	testCases := []struct {
+		desc     string
+		actual   int
+		expected int
+	}{
+		{
+			desc:     "Should return the last element of the slice",
+			actual:   Last(slice),
+			expected: 3,
+		},
+	}
+
+	// Run Tests
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			if tC.actual != tC.expected {
+				t.Errorf("%s\nwant %d, got %d", tC.desc, tC.expected, tC.actual)
+			}
+		})
+	}
+
 }
 
 func ExampleLast() {
-	a := []int{1, 2, 3, 4, 5}
+	// Test Data
+	slice := []int{0, 1, 2, 3}
 
-	fmt.Println(Last(a))
+	last := Last(slice)
 
-	// Output:
-	// 5
+	fmt.Println(last)
+
+	// Output: 3
 }
 
 func ExampleLast_method() {
-	a := New([]int{1, 2, 3, 4, 5})
+	// Test Data
+	slice := New([]int{0, 1, 2, 3})
 
-	fmt.Println(a.Last())
+	last := slice.Last()
 
-	// Output:
-	// 5
+	fmt.Println(last)
+
+	// Output: 3
+}
+
+// * NTH * //
+
+func TestNth(t *testing.T) {
+
+	// Test Data
+	slice := []int{0, 1, 2, 3}
+
+	// Test Cases
+	testCases := []struct {
+		desc     string
+		actual   int
+		expected int
+	}{
+		{
+			desc:     "Should return the nth element of the slice",
+			actual:   Nth(slice, 2),
+			expected: 1,
+		},
+	}
+
+	// Run Tests
+	for _, tC := range testCases {
+		t.Run(tC.desc, func(t *testing.T) {
+			if tC.actual != tC.expected {
+				t.Errorf("%s\nwant %d, got %d", tC.desc, tC.expected, tC.actual)
+			}
+		})
+	}
+
 }
 
 func ExampleNth() {
-	a := []int{1, 2, 3, 4, 5}
+	// Test Data
+	slice := []int{0, 1, 2, 3}
 
-	fmt.Println(Nth(a, 2))
+	nth := Nth(slice, 2)
 
-	// Output:
-	// 2
+	fmt.Println(nth)
+
+	// Output: 1
+}
+
+func ExampleNth_method() {
+	// Test Data
+	slice := New([]int{0, 1, 2, 3})
+
+	nth := slice.Nth(2)
+
+	fmt.Println(nth)
+
+	// Output: 1
 }
 
 // * AT *//
