@@ -1,41 +1,26 @@
 package test
 
-import (
-	"testing"
-)
-
 // ---------
 // TEST CASE
 // ---------
 
+// TestCase describes a test case
 type TestCase[T any] struct {
-	Desc     string
-	Fn       func() T
+	// Description of the test case
+	Desc string
+	// Function to generate the actual value
+	Fn func() T
+	// Expected value
 	Expected T
-	Fail     func(actual, expected T) bool
-}
-
-// --------------
-// RUN TEST CASES
-// --------------
-
-func RunTestCases[T any](testCases *[]TestCase[T], t *testing.T) {
-
-	for _, testCase := range *testCases {
-		t.Run(testCase.Desc, func(t *testing.T) {
-			actual := testCase.Fn()
-			if testCase.Fail(actual, testCase.Expected) {
-				t.Errorf("Failed: %v\nwant:\t%v\ngot:\t%v", testCase.Desc, testCase.Expected, actual)
-			}
-		})
-	}
-
+	// Function to compare the actual and expected values
+	Fail func(actual, expected T) bool
 }
 
 // -------
 // HELPERS
 // -------
 
+// Inequality is a helper function that returns true if the actual value is not equal to the expected value.
 func Inequality[T comparable](actual, expected T) bool {
 	return actual != expected
 }
