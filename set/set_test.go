@@ -10,35 +10,12 @@ import (
 // * SET *//
 
 func TestNew(t *testing.T) {
+	actual := New([]int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4})
 
-	// Create a slice
-	slice := []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4}
-
-	// Create a set from the slice
-	set := New(slice)
-
-	// Check if the set has the correct length
-	if set.Len() != len(slice) {
-		t.Errorf("Set has incorrect length. Expected %v, got %v", len(slice), set.Len())
+	expected := []int{1, 2, 3, 4}
+	if !slice.Equal(actual, expected) {
+		t.Errorf("Set.New() returned %v, expected %v", actual, expected)
 	}
-
-	// Check if the set has the correct capacity
-	if set.Cap() != cap(slice) {
-		t.Errorf("Set has incorrect capacity. Expected %v, got %v", cap(slice), set.Cap())
-	}
-
-	// Check if the set has the correct size
-	if set.Size() != len(slice) {
-		t.Errorf("Set has incorrect size. Expected %v, got %v", len(slice), set.Size())
-	}
-
-	// Check if the set has the correct values
-	for _, v := range slice {
-		if !set.Has(v) {
-			t.Errorf("Set does not contain value %v", v)
-		}
-	}
-
 }
 
 func ExampleNew() {

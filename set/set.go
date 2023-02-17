@@ -57,7 +57,7 @@ func (s *Set[T]) Has(value T) bool {
 // Add another element to the Set
 func (s *Set[T]) Add(value T) *Set[T] {
 	if !s.Has(value) {
-		s.Add(value)
+		*s = append(*s, value)
 	}
 	return s
 }
