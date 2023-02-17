@@ -580,6 +580,82 @@ func ExampleFind_method() {
 	// true 10
 }
 
+// * FIND LAST * //
+
+func TestFindLast(t *testing.T) {
+
+	// Test Data
+	var sliceA []int = []int{0, 1, 2, 3, 4, 5, 6}
+
+	// Test Cases
+	testCases := []test.TestCase[bool]{
+		{
+			Desc: "Find 3 in the slice",
+			Fn: func() bool {
+				ok, _, _ := FindLast(sliceA, func(v, _ int) bool { return v == 3 })
+				return ok
+			},
+			Expected: true,
+			Fail:     test.Inequality[bool],
+		},
+		{
+			Desc: "Do not find 11 in the slice",
+			Fn: func() bool {
+				ok, _, _ := FindLast(sliceA, func(v, _ int) bool { return v == 11 })
+				return ok
+			},
+			Expected: false,
+			Fail:     test.Inequality[bool],
+		},
+		{
+			Desc: "Find the last multiple of 4",
+			Fn: func() bool {
+				ok, element, _ := FindLast(sliceA, func(v, _ int) bool { return v%4 == 0 && v != 0 })
+				return ok && element == 4
+			},
+			Expected: true,
+			Fail:     test.Inequality[bool],
+		},
+	}
+
+	// Run Tests
+	for _, tc := range testCases {
+		t.Run(tc.Desc, func(t *testing.T) {
+			actual := tc.Fn()
+			if tc.Fail(actual, tc.Expected) {
+				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
+			}
+		})
+	}
+
+}
+
+func ExampleFindLast() {
+	slice := []int{1, 3, 5, 7, 9, 10}
+
+	ok, v, _ := FindLast(slice, func(v, _ int) bool {
+		return v%2 == 0
+	})
+
+	fmt.Println(ok, v)
+
+	// Output:
+	// true 10
+}
+
+func ExampleFindLast_method() {
+	slice := New([]int{1, 3, 5, 7, 9, 10})
+
+	ok, v, _ := slice.FindLast(func(v, _ int) bool {
+		return v%2 == 0
+	})
+
+	fmt.Println(ok, v)
+
+	// Output:
+	// true 10
+}
+
 // * INCLUDES * //
 
 func TestIncludes(t *testing.T) {
