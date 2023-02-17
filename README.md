@@ -9,36 +9,6 @@ Contains a set of utility functions to help deal with slices.
 
 ---
 
-## 📦 Packages
-
-```sh
-go get github.com/Shresht7/sliceutils
-```
-
-### `slice`
-
-Contains the utility functions to deal with slices.
-
-```sh
-go get github.com/Shresht7/sliceutils/slice
-```
-
-### `set`
-
-Contains the utility functions to deal with sets.
-
-```sh
-go get github.com/Shresht7/sliceutils/set
-```
-
-<div align="right">
-
-⬆️ [Back to Top][top]
-
-</div>
-
----
-
 ## 📖 Usage
 
 ```go
@@ -84,12 +54,40 @@ s.ForEach(func (value, index int) {
 
 ---
 
+## 📦 Packages
+
+```sh
+go get github.com/Shresht7/sliceutils
+```
+
+### `slice`
+
+Contains the utility functions to deal with slices.
+
+```sh
+go get github.com/Shresht7/sliceutils/slice
+```
+
+### `set`
+
+Contains the utility functions to deal with sets.
+
+```sh
+go get github.com/Shresht7/sliceutils/set
+```
+
+<div align="right">
+
+⬆️ [Back to Top][top]
+
+</div>
+
+---
+
 ## 📘 API Reference
 
-### `Slice`
 
-
-#### `Equal`
+### `Equal`
 
 Check if two slices are equal
 
@@ -110,7 +108,7 @@ slice.Equal(a, c)     //  true
 
 </div>
 
-#### `First`, `Last` and `At`
+### `First`, `Last` and `At`
 
 Get the first, last and nth element from the slice
 
@@ -135,7 +133,7 @@ thirdElement := slice.At(s, 3)    //  2
 
 </div>
 
-#### `ForEach`
+### `ForEach`
 
 Iterate over each element of the slice and execute the callback function.
 
@@ -158,7 +156,7 @@ slice.ForEach(s, func(value string, index int) {
 
 </div>
 
-#### `Filter`
+### `Filter`
 
 Returns a new slice containing the elements that satisfy the callback.
 
@@ -182,7 +180,7 @@ filteredElements := slice.Filter(s, func (value, index int) bool {
 
 </div>
 
-#### `Map`
+### `Map`
 
 Returns a new slice based on the callback criteria.
 
@@ -204,7 +202,7 @@ newS := slice.Map(s, func (value, index int) int {
 
 </div>
 
-#### `Reduce`
+### `Reduce`
 
 Reduces the entire slice into a single value.
 
@@ -226,7 +224,7 @@ sum := slice.Reduce(s, func (accumulator, current, index int, slice []int) int {
 
 </div>
 
-#### `Every` and `Some`
+### `Every` and `Some`
 
 `Every` returns `true` if the callback is valid for every entry of the slice.
 
@@ -255,7 +253,7 @@ hasSomethingGreaterThan7 := slice.Some(s, func (value, index int) bool {
 
 </div>
 
-#### `Find`
+### `Find`
 
 Finds the element for which the given callback is `true` and returns a status, the value and the index.
 
@@ -277,7 +275,7 @@ ok, value, index := slice.Find(s, func (v, i int) bool {
 
 </div>
 
-#### `Includes`
+### `Includes`
 
 Returns `true` if element is in the slice.
 
@@ -298,7 +296,7 @@ b := slice.Includes(s, 4)    //  false
 
 </div>
 
-#### `Concat`
+### `Concat`
 
 Concatenates multiple slices into a single slice
 
@@ -319,7 +317,7 @@ c := slice.Concat(a, b)   //  []int{0, 1, 2, 3, 4}
 
 </div>
 
-#### `Reverse`
+### `Reverse`
 
 Reverses a slice
 
@@ -339,7 +337,7 @@ rev := slice.Reverse(s)   //  []int{3, 2, 1, 0}
 
 </div>
 
-#### `Join`
+### `Join`
 
 Joins the element of a slice into a string using the given separator.
 
@@ -359,7 +357,7 @@ str := slice.Join(s, "-->")   //  "0-->1-->2"
 
 </div>
 
-#### `Push` and `Pop`
+### `Push` and `Pop`
 
 `Push` adds elements to the end of the slice.
 
@@ -384,7 +382,7 @@ s = slice.Pop(&s)     //  []int{0, 1, 2}
 
 </div>
 
-#### `Shift` and `Unshift`
+### `Shift` and `Unshift`
 
 `Shift` removes elements from the start of the slice.
 
@@ -409,7 +407,7 @@ s = slice.Unshift(s, 3)   //  []int{0, 1, 2, 3}
 
 </div>
 
-#### `Chunk`
+### `Chunk`
 
 Chunks a slice into smaller slices of (at most) given size.
 
@@ -431,15 +429,14 @@ d := slice.Chunk(s, 2)    //  [][]int{{0, 1}, {2, 3}, {4, 5}, {6}}
 
 </div>
 
-### `Set`
-
-
-
 ---
 
 ## 📑 License
 
 This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.
+
+
+
 
 
 <!-- LINKS -->
