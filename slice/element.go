@@ -24,18 +24,6 @@ func (slice *Slice[T]) Last() T {
 	return Last(*slice)
 }
 
-// * Nth * //
-
-// Returns the nth element of the slice
-func Nth[T any](slice []T, n int) T {
-	return slice[n-1]
-}
-
-// Returns the nth element of the slice
-func (slice *Slice[T]) Nth(n int) T {
-	return Nth(*slice, n)
-}
-
 // * AT * //
 
 // Returns the element at the given index
