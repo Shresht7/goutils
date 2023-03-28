@@ -1,4 +1,4 @@
-# `goutils`
+# `goutils/slice`
 
 Higher-order ~~array~~ slice methods in Go! and more.
 
@@ -411,4 +411,4 @@ This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LI
 
 <!-- LINKS -->
 
-[top]: #slice
+[top]: #goutils/slice
