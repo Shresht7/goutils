@@ -70,7 +70,7 @@ s.ForEach(func (value, index int) {
 Returns the length of the set.
 
 ```go
-func Len(set interface{}) int
+func (s *Set[T]) Len() int
 ```
 
 <div align="right">
@@ -79,12 +79,12 @@ func Len(set interface{}) int
 
 </div>
 
-### `Add`
+### `Cap`
 
-Adds an element to the set.
+Returns the capacity of the set.
 
 ```go
-func Add(set interface{}, value interface{})
+func (s *Set[T]) Cap() int
 ```
 
 <div align="right">
@@ -93,12 +93,26 @@ func Add(set interface{}, value interface{})
 
 </div>
 
-### `Delete`
+### `AsSlice`
 
-Deletes an element from the set.
+Returns the set as a slice.
 
 ```go
-func Delete(set interface{}, value interface{})
+func (s *Set[T]) AsSlice() []T
+```
+
+<div align="right">
+
+⬆️ [Back to Top][top]
+
+</div>
+
+### `Size`
+
+Returns the size of the set.
+
+```go
+func (s *Set[T]) Size() int
 ```
 
 <div align="right">
@@ -112,7 +126,7 @@ func Delete(set interface{}, value interface{})
 Checks if the set has the given element.
 
 ```go
-func Has(set interface{}, value interface{}) bool
+func (s *Set[T]) Has(value T) bool
 ```
 
 <div align="right">
@@ -121,12 +135,26 @@ func Has(set interface{}, value interface{}) bool
 
 </div>
 
-### `ForEach`
+### `Add`
 
-Iterates over the set and calls the given function for each element.
+Adds an element to the set.
 
 ```go
-func ForEach(set interface{}, fn interface{})
+func (s *Set[T]) Add(value T) *Set[T]
+```
+
+<div align="right">
+
+⬆️ [Back to Top][top]
+
+</div>
+
+### `Delete`
+
+Deletes an element from the set.
+
+```go
+func (s *Set[T]) Delete(value T) *Set[T]
 ```
 
 <div align="right">
@@ -140,7 +168,21 @@ func ForEach(set interface{}, fn interface{})
 Clears the set.
 
 ```go
-func Clear(set interface{})
+func (s *Set[T]) Clear() *Set[T]
+```
+
+<div align="right">
+
+⬆️ [Back to Top][top]
+
+</div>
+
+### `ForEach`
+
+Iterates over the set and calls the given function for each element.
+
+```go
+func (s *Set[T]) ForEach(fn slice.Callback[T])
 ```
 
 <div align="right">
@@ -153,7 +195,7 @@ func Clear(set interface{})
 
 ## 📑 License
 
-This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](../LICENSE) - see the [LICENSE](../LICENSE) file for details.
 
 
 

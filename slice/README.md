@@ -403,7 +403,7 @@ d := slice.Chunk(s, 2)    //  [][]int{{0, 1}, {2, 3}, {4, 5}, {6}}
 
 ## 📑 License
 
-This project is licensed under the [MIT License](LICENSE) - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the [MIT License](../LICENSE) - see the [LICENSE](../LICENSE) file for details.
 
 
 
