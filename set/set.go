@@ -1,7 +1,7 @@
 package set
 
 import (
-	"github.com/Shresht7/sliceutils/slice"
+	"github.com/Shresht7/goutils/slice"
 )
 
 // Set is a set of unique values

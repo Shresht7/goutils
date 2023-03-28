@@ -5,7 +5,7 @@
 ## 📦 Packages
 
 ```sh
-go get github.com/Shresht7/sliceutils
+go get github.com/Shresht7/goutils
 ```
 
 ### `slice`
@@ -13,7 +13,7 @@ go get github.com/Shresht7/sliceutils
 Contains the utility functions to deal with slices.
 
 ```sh
-go get github.com/Shresht7/sliceutils/slice
+go get github.com/Shresht7/goutils/slice
 ```
 
 ### `set`
@@ -21,7 +21,7 @@ go get github.com/Shresht7/sliceutils/slice
 Contains the utility functions to deal with sets.
 
 ```sh
-go get github.com/Shresht7/sliceutils/set
+go get github.com/Shresht7/goutils/set
 ```
 
 <div align="right">

@@ -1,4 +1,4 @@
-# `sliceutils`
+# `goutils`
 
 Higher-order ~~array~~ slice methods in Go! and more.
 
@@ -14,7 +14,7 @@ Contains a set of utility functions to help deal with slices.
 ```go
 import (
     "fmt"
-    "github.com/Shresht7/sliceutils/slice"
+    "github.com/Shresht7/goutils/slice"
 )
 
 func main() {

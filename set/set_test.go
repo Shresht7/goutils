@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Shresht7/sliceutils/slice"
+	"github.com/Shresht7/goutils/slice"
 )
 
 // * SET *//
