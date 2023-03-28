@@ -1,5 +1,7 @@
 # `goutils`
 
+A collection of utility functions for Go.
+
 ---
 
 ## 📦 Packages
@@ -8,20 +10,20 @@
 go get github.com/Shresht7/goutils
 ```
 
-### `slice`
-
-Contains the utility functions to deal with slices.
-
-```sh
-go get github.com/Shresht7/goutils/slice
-```
-
 ### `set`
 
 Contains the utility functions to deal with sets.
 
 ```sh
 go get github.com/Shresht7/goutils/set
+```
+
+### `slice`
+
+Contains the utility functions to deal with slices.
+
+```sh
+go get github.com/Shresht7/goutils/slice
 ```
 
 <div align="right">
