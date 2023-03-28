@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/Shresht7/sliceutils/internal/test"
+	"github.com/Shresht7/goutils/internal/test"
 )
 
 // ----------------
