@@ -12,7 +12,7 @@ go get github.com/Shresht7/goutils
 
 ### [`set`](set)
 
-Contains the utility functions to deal with sets.
+Contains utility functions for working with sets.
 
 ```sh
 go get github.com/Shresht7/goutils/set
@@ -20,7 +20,7 @@ go get github.com/Shresht7/goutils/set
 
 ### [`slice`](slice)
 
-Contains the utility functions to deal with slices.
+Contains utility functions for working with slices.
 
 ```sh
 go get github.com/Shresht7/goutils/slice
@@ -28,7 +28,7 @@ go get github.com/Shresht7/goutils/slice
 
 ### [`strings`](strings)
 
-Contains the utility functions to deal with strings.
+Contains utility functions for working with strings.
 
 ```sh
 go get github.com/Shresht7/goutils/strings
