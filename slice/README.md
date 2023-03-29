@@ -1,6 +1,6 @@
 # `goutils/slice`
 
-[![Go Reference](https://pkg.go.dev/badge/x/github.com/Shresht7/goutils/slice.svg)](https://pkg.go.dev/x/github.com/Shresht7/goutils/slice)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Shresht7/goutils/slice.svg)](https://pkg.go.dev/github.com/Shresht7/goutils/slice)
 
 Higher-order ~~array~~ slice methods in Go! and more.
 
@@ -58,7 +58,7 @@ s.ForEach(func (value, index int) {
 
 ## 📘 API Reference
 
-[![Go Reference](https://pkg.go.dev/badge/x/github.com/Shresht7/goutils/slice.svg)](https://pkg.go.dev/x/github.com/Shresht7/goutils/slice)
+[![Go Reference](https://pkg.go.dev/badge/github.com/Shresht7/goutils/slice.svg)](https://pkg.go.dev/github.com/Shresht7/goutils/slice)
 
 ### `Equal`
 
