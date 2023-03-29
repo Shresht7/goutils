@@ -1,5 +1,7 @@
 # `goutils/set`
 
+[![Go Reference](https://pkg.go.dev/badge/x/Shresht7/goutils/set.svg)](https://pkg.go.dev/x/Shresht7/goutils/set)
+
 Contains the utility functions to deal with sets.
 
 > _Inspired by JavaScript's set methods_
@@ -64,6 +66,8 @@ s.ForEach(func (value, index int) {
 ---
 
 ## 📘 API Reference
+
+[![Go Reference](https://pkg.go.dev/badge/x/Shresht7/goutils/set.svg)](https://pkg.go.dev/x/Shresht7/goutils/set)
 
 ### `Len`
 

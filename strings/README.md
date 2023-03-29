@@ -1,5 +1,7 @@
 # `goutils/strings`
 
+[![Go Reference](https://pkg.go.dev/badge/x/Shresht7/goutils/strings.svg)](https://pkg.go.dev/x/Shresht7/goutils/strings)
+
 A collection of utility functions for working with strings in Go.
 
 ---
@@ -31,6 +33,8 @@ func main() {
 ---
 
 ## 📘 API Reference
+
+[![Go Reference](https://pkg.go.dev/badge/x/Shresht7/goutils/strings.svg)](https://pkg.go.dev/x/Shresht7/goutils/strings)
 
 ### `Align`
 
