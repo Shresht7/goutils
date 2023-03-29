@@ -40,6 +40,16 @@ Aligns the given string to the left, right or center.
 func Align(str string, opts *AlignOptions) string
 ```
 
+Example:
+
+```go
+str := strings.Align("ABC", &strings.AlignOptions{
+    Width:  9,
+    Mode:   strings.AlignCenter,
+    Pad: "*",
+}) // Output: ***ABC***
+```
+
 <div align="right">
 
 ⬆️ [Back to Top][top]
@@ -52,6 +62,16 @@ Determines the minimum and maximum level of indentation for the given lines.
 
 ```go
 func DetermineIndentation(lines []string) (min, max int)
+```
+
+Example:
+
+```go
+min, max := strings.DetermineIndentation([]string{
+    "    Hello, world!",
+    "        This is a test.",
+    "    Goodbye!",
+}) // Output: 4, 8
 ```
 
 <div align="right">
@@ -68,6 +88,15 @@ Determines the width of each column in a 2D array of strings
 func DetermineWidths(array [][]string) []int
 ```
 
+Example:
+
+```go
+widths := strings.DetermineWidths([][]string{
+    {"Hello", "World!"},
+    {"This", "is", "a", "test"},
+}) // Output: [5, 6, 1, 4]
+```
+
 <div align="right">
 
 ⬆️ [Back to Top][top]
@@ -82,6 +111,14 @@ HereDoc returns a here-document representation of the given string.
 func HereDoc(str string) string
 ```
 
+Example:
+
+```go
+str := strings.HereDoc(`
+    Hello, world!
+`) // Output: Hello, world!
+```
+
 <div align="right">
 
 ⬆️ [Back to Top][top]
@@ -94,6 +131,14 @@ Checks if the given rune is a space character.
 
 ```go
 func IsSpace(r rune) bool
+```
+
+Example:
+
+```go
+fmt.Println(strings.IsSpace(' ')) // true
+fmt.Println(strings.IsSpace('\t')) // true
+fmt.Println(strings.IsSpace('a')) // false
 ```
 
 <div align="right">
@@ -112,6 +157,14 @@ func PadLeft(s, char string, count int) string
 func PadRight(s, char string, count int) string
 ```
 
+Example:
+
+```go
+fmt.Println(strings.PadLeft("ABC", "*", 3)) // ***ABC
+fmt.Println(strings.PadRight("ABC", "*", 3)) // ABC***
+fmt.Println(strings.Pad("ABC", "*", 2)) // **ABC**
+```
+
 <div align="right">
 
 ⬆️ [Back to Top][top]
@@ -126,6 +179,16 @@ Removes the indentation from the given string.
 func RemoveIndentation(n int, lines []string) []string
 ```
 
+Example:
+
+```go
+lines := strings.RemoveIndentation(4, []string{
+    "    Hello, world!",
+    "        This is a test.",
+    "    Goodbye!",
+}) // Output: ["Hello, world!", "    This is a test.", "Goodbye!"]
+```
+
 <div align="right">
 
 ⬆️ [Back to Top][top]
@@ -138,6 +201,12 @@ Wraps the given string to the given width.
 
 ```go
 func Wrap(s, str string) string
+```
+
+Example:
+
+```go
+fmt.Println(strings.Wrap("__", "Hello, world!")) // __Hello, world!__
 ```
 
 <div align="right">
