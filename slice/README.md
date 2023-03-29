@@ -64,6 +64,9 @@ Check if two slices are equal
 ```go
 func Equal(T comparable)(a, b []T) bool
 ```
+
+Example:
+
 ```go
 a := []int{0, 1, 2, 3}
 b := []int{0, 1, 2}
@@ -90,6 +93,8 @@ func Last[T any](slice []T) T
 func At[T any](slice []T, pos int) T
 ```
 
+Example:
+
 ```go
 s := []int{0, 1, 2, 3, 4}
 firstElement := slice.First(s)    //  0
@@ -112,6 +117,7 @@ func ForEach[T any](slice []T, cb func(value T, index int))
 ```
 
 Example:
+
 ```go
 s := []string{"A", "B", "C", "D", "E"}
 
@@ -135,6 +141,7 @@ func Filter[T any](slice []T, cb ReturnCallback[T, bool]) []T
 ```
 
 Example:
+
 ```go
 s := []int{0, 1, 2, 3, 4, 5, 6}
 
@@ -159,6 +166,7 @@ func Map[From, To any](slice []From, cb ReturnCallback[From, To]) []To
 ```
 
 Example:
+
 ```go
 s := []int{0, 1, 2}
 newS := slice.Map(s, func (value, index int) int {
@@ -181,6 +189,7 @@ func Reduce[From, To any](slice []From, cb ReducerCallback[From, To], initialize
 ```
 
 Example:
+
 ```go
 s := []int{0, 1, 2, 3, 4}
 sum := slice.Reduce(s, func (accumulator, current, index int, slice []int) int {
@@ -207,6 +216,7 @@ func Some[T any](slice []T, cb ReturnCallback[T, bool]) bool
 ```
 
 Example:
+
 ```go
 s := []int{0, 2, 4, 6, 8}
 divisibleBy2 := slice.Every(s, func (value, index int) bool {
@@ -232,6 +242,7 @@ func Find[T any](slice []T, cb ReturnCallback[T, bool]) (bool, T, int)
 ```
 
 Example:
+
 ```go
 s := []int{0, 1, 2, 3, 4, 5, 6, 7}
 ok, value, index := slice.Find(s, func (v, i int) bool {
@@ -254,6 +265,7 @@ func Includes[T comparable](slice []T, element T) bool
 ```
 
 Example:
+
 ```go
 s := []int{0, 1, 2, 3}
 a := slice.Includes(s, 3)    //  true
@@ -275,6 +287,7 @@ func Concat[T any](slices ...[]T) []T
 ```
 
 Example:
+
 ```go
 a := []int{0, 1, 2}
 b := []int{3, 4}
@@ -296,6 +309,7 @@ func Reverse[T any](slice []T) []T
 ```
 
 Example:
+
 ```go
 s := []int{0, 1, 2, 3}
 rev := slice.Reverse(s)   //  []int{3, 2, 1, 0}
@@ -316,6 +330,7 @@ func Join[T any](slice []T, separator string) string
 ```
 
 Example:
+
 ```go
 s := []int{0, 1, 2}
 str := slice.Join(s, "-->")   //  "0-->1-->2"
@@ -340,6 +355,7 @@ func Pop[T any](slice *[]T) T
 ```
 
 Example:
+
 ```go
 s := []int{0, 1, 2}
 s = slice.Push(s, 3)  //  []int{0, 1, 2, 3}
@@ -365,6 +381,7 @@ func Unshift[T any](slice []T, elements ...T) []T
 ```
 
 Example:
+
 ```go
 s := []int{0, 1, 2, 3}
 s = slice.Shift(&s)       //  []int{0, 1, 2}
@@ -386,6 +403,7 @@ func Chunk[T any](slice []T, size int) [][]T
 ```
 
 Example:
+
 ```go
 s := []int{0, 1, 2, 3, 4, 5}
 c := slice.Chunk(s, 2)    //  [][]int{{0, 1}, {2, 3}, {4, 5}}
