@@ -4,7 +4,7 @@ import (
 	"github.com/Shresht7/goutils/slice"
 )
 
-// Set is a set of unique values
+// Set is a collection of unique values
 type Set[T comparable] slice.Slice[T]
 
 // New creates a new set from a slice
@@ -54,7 +54,7 @@ func (s *Set[T]) Has(value T) bool {
 	return slice.Includes(*s, value)
 }
 
-// Add another element to the Set
+// Adds another element to the Set
 func (s *Set[T]) Add(value T) *Set[T] {
 	if !s.Has(value) {
 		*s = append(*s, value)
