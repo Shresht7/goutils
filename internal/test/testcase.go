@@ -11,12 +11,3 @@ type TestCase[T any] struct {
 	Expected T                             // Expected value to compare the actual value with
 	Fail     func(actual, expected T) bool // Function to compare the actual and expected values. If true, the test case has failed
 }
-
-// -------
-// HELPERS
-// -------
-
-// Inequality is a helper function that returns true if the actual value is not equal to the expected value
-func Inequality[T comparable](actual, expected T) bool {
-	return actual != expected
-}
