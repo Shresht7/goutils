@@ -17,8 +17,7 @@ func HereDoc(s string) string {
 	s = strings.TrimRight(s, "\n\t\r")
 
 	// Determine minimum indentation level
-	lines := strings.Split(s, "\n")
-	indentationLevel, _ := DetermineIndentation(lines)
+	indentationLevel, _ := DetermineIndentation(s)
 
 	// Remove indentation from lines
 	s = Dedent(s, indentationLevel)

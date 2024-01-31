@@ -1,7 +1,15 @@
 package helpers
 
-// Determines the minimum and maximum level of indentation for the given lines
-func DetermineIndentation(lines []string) (min, max int) {
+import "strings"
+
+// Determines the minimum and maximum level of indentation for the given lines.
+// The lines can be passed as a slice of strings or as a single multi-line string.
+func DetermineIndentation(lines ...string) (min, max int) {
+
+	// If only one argument was passed, split it into lines, assuming it to be a multi-line string
+	if len(lines) == 1 {
+		lines = strings.Split(lines[0], "\n")
+	}
 
 	// Iterate over the lines and determine the minimum and maximum indentation levels
 	for _, line := range lines {

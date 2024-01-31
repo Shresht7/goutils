@@ -47,7 +47,7 @@ func TestDetermineIndentation(t *testing.T) {
 
 	// Run test cases
 	for _, c := range cases {
-		min, max := DetermineIndentation(c.lines)
+		min, max := DetermineIndentation(c.lines...)
 		if min != c.level[0] || max != c.level[1] {
 			t.Errorf("DetermineIndentation(%q) == (%d, %d), want (%d, %d)", c.lines, min, max, c.level[0], c.level[1])
 		}
