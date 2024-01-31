@@ -92,3 +92,119 @@ func TestSplitIntoWords(t *testing.T) {
 		}
 	}
 }
+
+func TestToCamelCase(t *testing.T) {
+
+	testCases := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"a", "a"},
+		{"A", "a"},
+		{"abc", "abc"},
+		{"CamelCase", "camelCase"},
+		{"CamelCaseString", "camelCaseString"},
+		{"snake_case", "snakeCase"},
+		{"snake_case_string", "snakeCaseString"},
+		{"kebab-case", "kebabCase"},
+		{"kebab-case-string", "kebabCaseString"},
+		{"TitleCase", "titleCase"},
+		{"TitleCaseString", "titleCaseString"},
+	}
+
+	for _, testCase := range testCases {
+		actual := ToCamelCase(testCase.input)
+		if actual != testCase.expected {
+			t.Errorf("ToCamelCase(%q) expected %q, got %q", testCase.input, testCase.expected, actual)
+		}
+	}
+
+}
+
+func TestToSnakeCase(t *testing.T) {
+
+	testCases := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"a", "a"},
+		{"A", "a"},
+		{"abc", "abc"},
+		{"CamelCase", "camel_case"},
+		{"CamelCaseString", "camel_case_string"},
+		{"snake_case", "snake_case"},
+		{"snake_case_string", "snake_case_string"},
+		{"kebab-case", "kebab_case"},
+		{"kebab-case-string", "kebab_case_string"},
+		{"TitleCase", "title_case"},
+		{"TitleCaseString", "title_case_string"},
+	}
+
+	for _, testCase := range testCases {
+		actual := ToSnakeCase(testCase.input)
+		if actual != testCase.expected {
+			t.Errorf("ToSnakeCase(%q) expected %q, got %q", testCase.input, testCase.expected, actual)
+		}
+	}
+
+}
+
+func TestToKebabCase(t *testing.T) {
+
+	testCases := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"a", "a"},
+		{"A", "a"},
+		{"abc", "abc"},
+		{"CamelCase", "camel-case"},
+		{"CamelCaseString", "camel-case-string"},
+		{"snake_case", "snake-case"},
+		{"snake_case_string", "snake-case-string"},
+		{"kebab-case", "kebab-case"},
+		{"kebab-case-string", "kebab-case-string"},
+		{"TitleCase", "title-case"},
+		{"TitleCaseString", "title-case-string"},
+	}
+
+	for _, testCase := range testCases {
+		actual := ToKebabCase(testCase.input)
+		if actual != testCase.expected {
+			t.Errorf("ToKebabCase(%q) expected %q, got %q", testCase.input, testCase.expected, actual)
+		}
+	}
+
+}
+
+func TestToTitleCase(t *testing.T) {
+
+	testCases := []struct {
+		input    string
+		expected string
+	}{
+		{"", ""},
+		{"a", "A"},
+		{"A", "A"},
+		{"abc", "Abc"},
+		{"CamelCase", "CamelCase"},
+		{"CamelCaseString", "CamelCaseString"},
+		{"snake_case", "SnakeCase"},
+		{"snake_case_string", "SnakeCaseString"},
+		{"kebab-case", "KebabCase"},
+		{"kebab-case-string", "KebabCaseString"},
+		{"TitleCase", "TitleCase"},
+		{"TitleCaseString", "TitleCaseString"},
+	}
+
+	for _, testCase := range testCases {
+		actual := ToTitleCase(testCase.input)
+		if actual != testCase.expected {
+			t.Errorf("ToTitleCase(%q) expected %q, got %q", testCase.input, testCase.expected, actual)
+		}
+	}
+
+}
