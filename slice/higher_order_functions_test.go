@@ -442,6 +442,19 @@ func ExampleReduceRight() {
 	// CBA
 }
 
+func ExampleReduceRight_method() {
+	slice := New([]string{"A", "B", "C"})
+
+	concatenated := slice.ReduceRight(func(a, c string, _ int, _ []string) string {
+		return a + c
+	}, "")
+
+	fmt.Println(concatenated)
+
+	// Output:
+	// CBA
+}
+
 // * EVERY *//
 
 func TestEvery(t *testing.T) {
