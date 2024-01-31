@@ -1,6 +1,10 @@
 package helpers
 
-import "testing"
+import (
+	"testing"
+
+	"github.com/Shresht7/goutils/internal/test"
+)
 
 func TestDetermineWidths(t *testing.T) {
 
@@ -37,7 +41,7 @@ func TestDetermineWidths(t *testing.T) {
 	// Run Test Cases
 	for _, testCase := range testCases {
 		widths := DetermineWidths(testCase.Array)
-		if !equal(widths, testCase.Widths) {
+		if !test.Equal(widths, testCase.Widths) {
 			t.Errorf("want: %v got: %v", testCase.Widths, widths)
 		}
 
