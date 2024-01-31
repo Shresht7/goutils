@@ -1,4 +1,4 @@
-package helpers
+package strutils
 
 // Determines the width of each column in a 2D array of strings
 func DetermineWidths(array [][]string) []int {

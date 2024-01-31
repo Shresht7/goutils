@@ -1,4 +1,4 @@
-package helpers
+package strutils
 
 // Checks if the given rune is a space character.
 func IsSpace(r rune) bool {
