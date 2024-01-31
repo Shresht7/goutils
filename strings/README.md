@@ -65,7 +65,7 @@ str := strings.Align("ABC", &strings.AlignOptions{
 Determines the minimum and maximum level of indentation for the given lines.
 
 ```go
-func DetermineIndentation(lines []string) (min, max int)
+func DetermineIndentation(lines ...string) (min, max int)
 ```
 
 Example:
@@ -75,7 +75,7 @@ min, max := strings.DetermineIndentation([]string{
     "    Hello, world!",
     "        This is a test.",
     "    Goodbye!",
-}) // Output: 4, 8
+}...) // Output: 4, 8
 ```
 
 <div align="right">
@@ -175,42 +175,26 @@ fmt.Println(strings.Pad("ABC", "*", 2)) // **ABC**
 
 </div>
 
-### `RemoveIndentation`
+### `Dedent`
 
 Removes the indentation from the given string.
 
 ```go
-func RemoveIndentation(n int, lines []string) []string
+func Dedent(s string, n int) string
 ```
 
 Example:
 
 ```go
-lines := strings.RemoveIndentation(4, []string{
-    "    Hello, world!",
-    "        This is a test.",
-    "    Goodbye!",
-}) // Output: ["Hello, world!", "    This is a test.", "Goodbye!"]
-```
-
-<div align="right">
-
-⬆️ [Back to Top][top]
-
-</div>
-
-### `Wrap`
-
-Wraps the given string to the given width.
-
-```go
-func Wrap(s, str string) string
-```
-
-Example:
-
-```go
-fmt.Println(strings.Wrap("__", "Hello, world!")) // __Hello, world!__
+fmt.Println(strings.Dedent(`
+    Hello, world!
+        This is a test.
+      Goodbye!
+`, 2))
+// Output:
+// Hello, world!
+//   This is a test.
+// Goodbye!
 ```
 
 <div align="right">
