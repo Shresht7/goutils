@@ -206,6 +206,30 @@ sum := slice.Reduce(s, func (accumulator, current, index int, slice []int) int {
 
 </div>
 
+### `ReduceRight`
+
+Reduces the entire slice into a single value, starting from the end.
+
+```go
+func ReduceRight[From, To any](slice []From, cb ReducerCallback[From, To], initializer To) To
+```
+
+Example:
+
+```go
+s := []string{"a", "b", "c", "d", "e"}
+str := slice.ReduceRight(s, func (accumulator, current string, index int, slice []string) string {
+    return accumulator + current
+}, "")  //  "edcba"
+```
+
+<div align="right">
+
+⬆️ [Back to Top][top]
+
+</div>
+
+
 ### `Every` and `Some`
 
 `Every` returns `true` if the callback is valid for every entry of the slice.
@@ -432,4 +456,4 @@ This project is licensed under the [MIT License](../LICENSE) - see the [LICENSE]
 
 <!-- LINKS -->
 
-[top]: #goutils/slice
+[top]: #
