@@ -32,7 +32,7 @@ func TestForEach(t *testing.T) {
 	testCases1 := []test.TestCase[int]{
 		{
 			Desc: "Should iterate over each entry in the slice",
-			Fn: func() int {
+			Actual: func() int {
 				actual := 0
 				ForEach(sliceA, func(_, _ int) { actual++ })
 				return actual
@@ -42,7 +42,7 @@ func TestForEach(t *testing.T) {
 		},
 		{
 			Desc: "Should not iterate over an empty slice",
-			Fn: func() int {
+			Actual: func() int {
 				actual := 0
 				ForEach(sliceA, func(_, _ int) { actual++ })
 				return actual
@@ -54,7 +54,7 @@ func TestForEach(t *testing.T) {
 	testCases2 := []test.TestCase[string]{
 		{
 			Desc: "Should iterate over each entry in a string slice",
-			Fn: func() string {
+			Actual: func() string {
 				actual := ""
 				ForEach(sliceB, func(v string, _ int) { actual += v + "->" })
 				return actual
@@ -67,7 +67,7 @@ func TestForEach(t *testing.T) {
 	// Run Tests
 	for _, tc := range testCases1 {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -75,7 +75,7 @@ func TestForEach(t *testing.T) {
 	}
 	for _, tc := range testCases2 {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -121,7 +121,7 @@ func TestFilter(t *testing.T) {
 	testCases := []test.TestCase[[]int]{
 		{
 			Desc: "Should return nothing",
-			Fn: func() []int {
+			Actual: func() []int {
 				return Filter(sliceA, func(v, _ int) bool { return false })
 			},
 			Expected: []int{},
@@ -129,7 +129,7 @@ func TestFilter(t *testing.T) {
 		},
 		{
 			Desc: "Should return everything",
-			Fn: func() []int {
+			Actual: func() []int {
 				return Filter(sliceA, func(v, _ int) bool { return true })
 			},
 			Expected: sliceA,
@@ -137,7 +137,7 @@ func TestFilter(t *testing.T) {
 		},
 		{
 			Desc: "Should return even numbers",
-			Fn: func() []int {
+			Actual: func() []int {
 				return Filter(sliceA, func(v, _ int) bool { return v%2 == 0 })
 			},
 			Expected: []int{0, 2, 4, 6},
@@ -145,7 +145,7 @@ func TestFilter(t *testing.T) {
 		},
 		{
 			Desc: "Should return odd numbers",
-			Fn: func() []int {
+			Actual: func() []int {
 				return Filter(sliceA, func(v, _ int) bool { return v%2 != 0 })
 			},
 			Expected: []int{1, 3, 5},
@@ -153,7 +153,7 @@ func TestFilter(t *testing.T) {
 		},
 		{
 			Desc: "Should return numbers greater than 2",
-			Fn: func() []int {
+			Actual: func() []int {
 				return Filter(sliceA, func(v, _ int) bool { return v > 2 })
 			},
 			Expected: []int{3, 4, 5, 6},
@@ -161,7 +161,7 @@ func TestFilter(t *testing.T) {
 		},
 		{
 			Desc: "Should return numbers equal to 5",
-			Fn: func() []int {
+			Actual: func() []int {
 				return Filter(sliceA, func(v, _ int) bool { return v == 5 })
 			},
 			Expected: []int{5},
@@ -172,7 +172,7 @@ func TestFilter(t *testing.T) {
 	// Run Tests
 	for _, tc := range testCases {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -217,7 +217,7 @@ func TestMap(t *testing.T) {
 	testCases := []test.TestCase[[]int]{
 		{
 			Desc: "Should return a slice with each value doubled",
-			Fn: func() []int {
+			Actual: func() []int {
 				return Map(sliceA, func(v, _ int) int { return 2 * v })
 			},
 			Expected: []int{0, 2, 4, 6, 8, 10, 12},
@@ -225,7 +225,7 @@ func TestMap(t *testing.T) {
 		},
 		{
 			Desc: "Should return a slice with 0 for even numbers and 1 for odd numbers",
-			Fn: func() []int {
+			Actual: func() []int {
 				return Map(sliceA, func(v, _ int) int { return v % 2 })
 			},
 			Expected: []int{0, 1, 0, 1, 0, 1, 0},
@@ -233,7 +233,7 @@ func TestMap(t *testing.T) {
 		},
 		{
 			Desc: "Should return an empty slice for an empty slice",
-			Fn: func() []int {
+			Actual: func() []int {
 				return Map([]int{}, func(v, _ int) int { return 1 })
 			},
 			Expected: []int{},
@@ -244,7 +244,7 @@ func TestMap(t *testing.T) {
 	// Run Tests
 	for _, tc := range testCases {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -295,7 +295,7 @@ func TestReduce(t *testing.T) {
 	testCases := []test.TestCase[int]{
 		{
 			Desc: "Should return the sum of all elements in the slice",
-			Fn: func() int {
+			Actual: func() int {
 				return Reduce(sliceA, func(a, c, _ int, _ []int) int { return a + c }, 0)
 			},
 			Expected: expectedSum,
@@ -306,7 +306,7 @@ func TestReduce(t *testing.T) {
 	// Run Tests
 	for _, tc := range testCases {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -321,7 +321,7 @@ func TestReduce(t *testing.T) {
 	testCases2 := []test.TestCase[string]{
 		{
 			Desc: "Should concatenate all the elements in the slice",
-			Fn: func() string {
+			Actual: func() string {
 				return Reduce(sliceB, func(a, c string, _ int, _ []string) string { return a + c }, "")
 			},
 			Expected: expectedConcatenation,
@@ -332,7 +332,7 @@ func TestReduce(t *testing.T) {
 	// Run Tests
 	for _, tc := range testCases2 {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -376,13 +376,13 @@ func TestEvery(t *testing.T) {
 	testCases := []test.TestCase[bool]{
 		{
 			Desc:     "Every element should be divisible by 2",
-			Fn:       func() bool { return Every(slice, func(v, _ int) bool { return v%2 == 0 }) },
+			Actual:   func() bool { return Every(slice, func(v, _ int) bool { return v%2 == 0 }) },
 			Expected: true,
 			Fail:     test.Inequality[bool],
 		},
 		{
 			Desc:     "Every element should not be divisible by 3",
-			Fn:       func() bool { return Every(slice, func(v, _ int) bool { return v%3 == 0 }) },
+			Actual:   func() bool { return Every(slice, func(v, _ int) bool { return v%3 == 0 }) },
 			Expected: false,
 			Fail:     test.Inequality[bool],
 		},
@@ -391,7 +391,7 @@ func TestEvery(t *testing.T) {
 	// Run Tests
 	for _, tc := range testCases {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -435,13 +435,13 @@ func TestSome(t *testing.T) {
 	testCases := []test.TestCase[bool]{
 		{
 			Desc:     "Every element should not be divisible by 2",
-			Fn:       func() bool { return Every(slice, func(v, _ int) bool { return v%2 == 0 }) },
+			Actual:   func() bool { return Every(slice, func(v, _ int) bool { return v%2 == 0 }) },
 			Expected: false,
 			Fail:     test.Inequality[bool],
 		},
 		{
 			Desc:     "Every element should be smaller than or equal to 10",
-			Fn:       func() bool { return Every(slice, func(v, _ int) bool { return v <= 10 }) },
+			Actual:   func() bool { return Every(slice, func(v, _ int) bool { return v <= 10 }) },
 			Expected: true,
 			Fail:     test.Inequality[bool],
 		},
@@ -450,7 +450,7 @@ func TestSome(t *testing.T) {
 	// Run Tests
 	for _, tc := range testCases {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -496,7 +496,7 @@ func TestFind(t *testing.T) {
 	testCases1 := []test.TestCase[bool]{
 		{
 			Desc: "Find 3 in the slice",
-			Fn: func() bool {
+			Actual: func() bool {
 				ok, _, _ := Find(sliceA, func(v, _ int) bool { return v == 3 })
 				return ok
 			},
@@ -505,7 +505,7 @@ func TestFind(t *testing.T) {
 		},
 		{
 			Desc: "Do not find 11 in the slice",
-			Fn: func() bool {
+			Actual: func() bool {
 				ok, _, _ := Find(sliceA, func(v, _ int) bool { return v == 11 })
 				return ok
 			},
@@ -516,7 +516,7 @@ func TestFind(t *testing.T) {
 	testCases2 := []test.TestCase[int]{
 		{
 			Desc: "Find the first multiple of 4",
-			Fn: func() int {
+			Actual: func() int {
 				_, v, _ := Find(sliceA, func(v, _ int) bool { return v%4 == 0 && v != 0 })
 				return v
 			},
@@ -525,7 +525,7 @@ func TestFind(t *testing.T) {
 		},
 		{
 			Desc: "Find the second multiple of 3",
-			Fn: func() int {
+			Actual: func() int {
 				_, v, _ := Find(sliceA, func(v, _ int) bool { return v%3 == 0 && v != 3 && v != 0 })
 				return v
 			},
@@ -537,7 +537,7 @@ func TestFind(t *testing.T) {
 	// Run Tests
 	for _, tc := range testCases1 {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -545,7 +545,7 @@ func TestFind(t *testing.T) {
 	}
 	for _, tc := range testCases2 {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -591,7 +591,7 @@ func TestFindLast(t *testing.T) {
 	testCases := []test.TestCase[bool]{
 		{
 			Desc: "Find 3 in the slice",
-			Fn: func() bool {
+			Actual: func() bool {
 				ok, _, _ := FindLast(sliceA, func(v, _ int) bool { return v == 3 })
 				return ok
 			},
@@ -600,7 +600,7 @@ func TestFindLast(t *testing.T) {
 		},
 		{
 			Desc: "Do not find 11 in the slice",
-			Fn: func() bool {
+			Actual: func() bool {
 				ok, _, _ := FindLast(sliceA, func(v, _ int) bool { return v == 11 })
 				return ok
 			},
@@ -609,7 +609,7 @@ func TestFindLast(t *testing.T) {
 		},
 		{
 			Desc: "Find the last multiple of 4",
-			Fn: func() bool {
+			Actual: func() bool {
 				ok, element, _ := FindLast(sliceA, func(v, _ int) bool { return v%4 == 0 && v != 0 })
 				return ok && element == 4
 			},
@@ -621,7 +621,7 @@ func TestFindLast(t *testing.T) {
 	// Run Tests
 	for _, tc := range testCases {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
 			}
@@ -667,13 +667,13 @@ func TestIncludes(t *testing.T) {
 	testCases := []test.TestCase[bool]{
 		{
 			Desc:     "Should include 3",
-			Fn:       func() bool { return Includes(sliceA, 3) },
+			Actual:   func() bool { return Includes(sliceA, 3) },
 			Expected: true,
 			Fail:     test.Inequality[bool],
 		},
 		{
 			Desc:     "Should not include 99",
-			Fn:       func() bool { return Includes(sliceA, 99) },
+			Actual:   func() bool { return Includes(sliceA, 99) },
 			Expected: false,
 			Fail:     test.Inequality[bool],
 		},
@@ -682,7 +682,7 @@ func TestIncludes(t *testing.T) {
 	// Run Tests
 	for _, tc := range testCases {
 		t.Run(tc.Desc, func(t *testing.T) {
-			actual := tc.Fn()
+			actual := tc.Actual()
 			if tc.Fail(actual, tc.Expected) {
 				t.Errorf("%s\nExpected: %v\nActual: %v", tc.Desc, tc.Expected, actual)
 			}
