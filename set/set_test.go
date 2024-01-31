@@ -225,3 +225,45 @@ func ExampleSet_Delete() {
 
 	// Output: [1 3]
 }
+
+// * FOR EACH *//
+
+func TestForEach(t *testing.T) {
+
+	// Create a Set
+	set := New([]int{1, 2, 3, 4})
+
+	// Test Cases
+	testCases := []struct {
+		expected int
+	}{
+		{1},
+		{2},
+		{3},
+		{4},
+	}
+
+	// Run Test Cases
+	set.ForEach(func(v, i int) {
+		if v != testCases[i].expected {
+			t.Errorf("Set.ForEach() returned %v, expected %v", v, testCases[i].expected)
+		}
+	})
+
+}
+
+func ExampleSet_ForEach() {
+	// Create a Set
+	set := New([]int{1, 2, 3, 4})
+
+	// Print the set
+	set.ForEach(func(v, i int) {
+		fmt.Println(v)
+	})
+
+	// Output:
+	// 1
+	// 2
+	// 3
+	// 4
+}
