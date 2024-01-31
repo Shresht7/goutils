@@ -367,6 +367,81 @@ func ExampleReduce_method() {
 	// 21
 }
 
+// * REDUCE RIGHT *//
+
+func TestReduceRight(t *testing.T) {
+
+	// Test Data
+	var sliceA []int = []int{0, 1, 2, 3, 4, 5, 6}
+	var sliceB []string = []string{"A", "B", "C"}
+
+	expectedSum := 0
+	for _, v := range sliceA {
+		expectedSum += v
+	}
+
+	testCases := []test.TestCase[int]{
+		{
+			Desc: "Should return the sum of all elements in the slice",
+			Actual: func() int {
+				return ReduceRight(sliceA, func(a, c, _ int, _ []int) int { return a + c }, 0)
+			},
+			Expected: expectedSum,
+			Fail:     test.Inequality[int],
+		},
+	}
+
+	// Run Tests
+	for _, tc := range testCases {
+		t.Run(tc.Desc, func(t *testing.T) {
+			actual := tc.Actual()
+			if tc.Fail(actual, tc.Expected) {
+				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
+			}
+		})
+	}
+
+	expectedConcatenation := ""
+	for i := len(sliceB) - 1; i >= 0; i-- {
+		expectedConcatenation += sliceB[i]
+	}
+
+	testCases2 := []test.TestCase[string]{
+		{
+			Desc: "Should concatenate all the elements in the slice",
+			Actual: func() string {
+				return ReduceRight(sliceB, func(a, c string, _ int, _ []string) string { return a + c }, "")
+			},
+			Expected: expectedConcatenation,
+			Fail:     test.Inequality[string],
+		},
+	}
+
+	// Run Tests
+	for _, tc := range testCases2 {
+		t.Run(tc.Desc, func(t *testing.T) {
+			actual := tc.Actual()
+			if tc.Fail(actual, tc.Expected) {
+				t.Errorf("%s: Expected: %v, Actual: %v", tc.Desc, tc.Expected, actual)
+			}
+		})
+	}
+
+}
+
+func ExampleReduceRight() {
+	slice := []string{"A", "B", "C"}
+
+	concatenated := ReduceRight(slice, func(a, c string, _ int, _ []string) string {
+		return a + c
+	}, "")
+
+	fmt.Println(concatenated)
+
+	// Output:
+	// CBA
+}
+
 // * EVERY *//
 
 func TestEvery(t *testing.T) {

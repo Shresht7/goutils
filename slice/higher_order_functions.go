@@ -72,6 +72,21 @@ func Reduce[From, To any](slice []From, cb ReducerCallback[From, To], initialize
 	return val
 }
 
+// * REDUCE RIGHT * //
+
+// Reduces a slice into a single value using the given callback function.
+// The callback receives the accumulated value, current value, index and the slice.
+func ReduceRight[From, To any](slice []From, cb ReducerCallback[From, To], initializer To) To {
+	val := initializer
+
+	// Iterate over the slice in reverse order and call the callback
+	for i := len(slice) - 1; i >= 0; i-- {
+		val = cb(val, slice[i], i, slice)
+	}
+
+	return val
+}
+
 // Reduces a slice into a single value using the given callback function.
 // The callback receives the accumulated value, current value, index and the slice.
 func (slice *Slice[T]) Reduce(cb ReducerCallback[T, T], initializer T) T {
