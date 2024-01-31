@@ -3,6 +3,7 @@ package helpers
 import (
 	"math"
 	"strings"
+	"unicode/utf8"
 )
 
 type AlignOptions struct {
@@ -52,9 +53,8 @@ func Align(str string, opts *AlignOptions) string {
 	tupleStr := []StringAndWidthTuple{}
 	// Find the maximum width of the string
 	for _, line := range lines {
-		// ! This might not be entirely accurate as unicode characters can be more than one byte in length
-		// TODO: Find a better way to calculate the width of a string in bytes
-		width := len(line)
+		// Calculate the width of the string in runes
+		width := utf8.RuneCountInString(line)
 
 		// Update the maximum width if the current line is longer
 		if width > maxWidth {
