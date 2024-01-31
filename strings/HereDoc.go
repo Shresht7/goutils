@@ -13,21 +13,18 @@ func HereDoc(s string) string {
 	if len(s) > 0 && s[0] == '\n' {
 		s = s[1:]
 	}
-
 	// Remove trailing whitespace
 	s = strings.TrimRight(s, "\n\t\r")
 
-	// Split string into lines
-	lines := strings.Split(s, "\n")
-
 	// Determine minimum indentation level
+	lines := strings.Split(s, "\n")
 	indentationLevel, _ := DetermineIndentation(lines)
 
 	// Remove indentation from lines
-	lines = RemoveIndentation(indentationLevel, lines)
+	s = Dedent(s, indentationLevel)
 
 	// Return here-document representation
-	return strings.Join(lines, "\n")
+	return s
 
 }
 
